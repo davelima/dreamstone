@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Name</th>
+              <th>Username</th>
+              <th>Email</th>
+              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+{% for administrator in administrators %}
+            <tr>
+              <td class="text-center text-yellow">
+    {% if administrator.superUser %}
+                <i class="fa fa-star"></i>
+    {% endif %}
+              </td>
+              <td>{{ administrator.name }}</td>
+              <td>{{ administrator.username }}</td>
+              <td>{{ administrator.email }}</td>
+              <td class="btn-group">
+    {% if is_granted('ROLE_SUPER_ADMIN') or app.user.id == administrator.id %}
+                <a href="{{ path('administrators-edit', {'id': administrator.id}) }}" class="btn btn-default">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                <a href="{{ path('administrator-switch-status') }}"
+                    data-id="{{ administrator.id }}"
+                    data-enable-message="This will enable {{ administrator.username }}'s account. Procceed?"
+                    data-disable-message="This will disabled {{ administrator.username }}'s account. Procceed?"
+                    data-status="{{ administrator.isActive }}"
+                    class="status-change-button btn btn-{% if administrator.isActive %}success{% else %}danger{% endif %}"
+                >
+                  <i class="fa fa-{% if administrator.isActive %}check{% else %}times{% endif %}-circle"></i>
+                </a>
+        {% endif %}
+    {% endif %}
+              </td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}

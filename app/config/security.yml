@@ -1,0 +1,31 @@
+security:
+    encoders:
+        AppBundle\Entity\Administrator:
+            algorithm: bcrypt
+
+    providers:
+        our_db_provider:
+            entity:
+                class: AppBundle:Administrator
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                provider: our_db_provider
+            logout:
+                path:   /logout/
+                target: /login/
+
+
+    access_control:
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/administrators/create/, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/, roles: ROLE_ADMIN }

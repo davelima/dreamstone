@@ -1,0 +1,23 @@
+{
+  "name": "dreamstone",
+  "authors": [
+    "David Lima <dave.lima@live.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "web/assets/bower/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6",
+    "iCheck": "^1.0.2"
+  }
+}
