@@ -1,4 +1,4 @@
-{% extends 'base.html.twig' %}
+{% extends 'dreamstone/base.html.twig' %}
 
 {% block body %}
 <div class="row">
@@ -8,24 +8,18 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Username</th>
-              <th>Email</th>
-              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+              <th>Nome</th>
+              <th>Login</th>
+              <th class="hidden-xs">Email</th>
+              <th class="hidden-xs"><i class="glyphicon glyphicon-option-vertical"></i></th>
             </tr>
           </thead>
           <tbody>
 {% for administrator in administrators %}
             <tr>
-              <td class="text-center text-yellow">
-    {% if administrator.superUser %}
-                <i class="fa fa-star"></i>
-    {% endif %}
-              </td>
               <td>{{ administrator.name }}</td>
               <td>{{ administrator.username }}</td>
-              <td>{{ administrator.email }}</td>
+              <td class="hidden-xs">{{ administrator.email }}</td>
               <td class="btn-group">
     {% if is_granted('ROLE_SUPER_ADMIN') or app.user.id == administrator.id %}
                 <a href="{{ path('administrators-edit', {'id': administrator.id}) }}" class="btn btn-default">
@@ -34,8 +28,8 @@
         {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <a href="{{ path('administrator-switch-status') }}"
                     data-id="{{ administrator.id }}"
-                    data-enable-message="This will enable {{ administrator.username }}'s account. Procceed?"
-                    data-disable-message="This will disabled {{ administrator.username }}'s account. Procceed?"
+                    data-enable-message="Isso irá habilitar a conta de {{ administrator.username }}. Continuar?"
+                    data-disable-message="Isso irá desabilitar {{ administrator.username }}. Continuar?"
                     data-status="{{ administrator.isActive }}"
                     class="status-change-button btn btn-{% if administrator.isActive %}success{% else %}danger{% endif %}"
                 >

@@ -1,15 +1,15 @@
-{% extends 'base.html.twig' %}
+{% extends 'dreamstone/base.html.twig' %}
 
 {% block body %}
 <div class="row">
-  <div class="col-xs-6">
+  <div class="col-xs-12 col-md-6">
     <div class="box box-primary administrator-profile">
       <div class="box-body">
         <div class="row">
-          <div class="col-xs-2">
-            <img src="https://www.gravatar.com/avatar/{{ app.user.md5email }}" class="img-circle pull-left" alt="User Image">
+          <div class="col-xs-4 col-md-2">
+            <img src="/uploads/{{ administrator.photo }}" class="img-circle pull-left img-responsive" alt="User Image" width="80">
           </div>
-          <div class="col-xs-10">
+          <div class="col-xs-8 col-md-10">
             <h2>{{ administrator.name }}</h2>
             <h3>{{ administrator.username }}</h3>
           </div>

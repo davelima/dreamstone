@@ -37,19 +37,49 @@ class Administrator implements AdvancedUserInterface, \Serializable
      * @ORM\Column(type="string", length=255)
      */
     private $password;
-    
+
     /**
-     * @ORM\Column(name="super_user", type="boolean")
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $superUser;
+    private $roles;
 
     /**
      * @ORM\Column(name="is_active", type="boolean")
      */
     private $isActive;
-    
+
+    /**
+     * @ORM\Column(type="string", length=36, nullable=true)
+     */
+    private $photo = 'no-photo.jpg';
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $description;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $facebookProfile;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $instagramProfile;
+
+    /**
+     * @ORM\Column(type="string", length=128, nullable=true)
+     */
+    private $twitterProfile;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Section", mappedBy="responsibles")
+     */
+    private $sectionResponsibles;
+
     private $plainPassword;
-    
+
     public function __construct()
     {
         $this->isActive = true;
@@ -90,17 +120,6 @@ class Administrator implements AdvancedUserInterface, \Serializable
         return $this->isActive;
     }
 
-    public function getRoles()
-    {
-        $roles = ['ROLE_ADMIN'];
-
-        if ($this->superUser) {
-            array_push($roles, 'ROLE_SUPER_ADMIN');
-        }
-
-        return $roles;
-    }
-    
     public function serialize()
     {
         return serialize([
@@ -265,26 +284,180 @@ class Administrator implements AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set superUser
+     * Set roles
      *
-     * @param boolean $superUser
+     * @param array $roles
      *
      * @return Administrator
      */
-    public function setSuperUser($superUser)
+    public function setRoles(array $roles)
     {
-        $this->superUser = $superUser;
+        $this->roles = implode(',', $roles);
 
         return $this;
     }
 
     /**
-     * Get superUser
+     * Get roles
      *
-     * @return boolean
+     * @return array
      */
-    public function getSuperUser()
+    public function getRoles()
     {
-        return $this->superUser;
+        return explode(',', $this->roles);
+    }
+
+    /**
+     * Set photo
+     *
+     * @param string $photo
+     *
+     * @return Administrator
+     */
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    /**
+     * Get photo
+     *
+     * @return string
+     */
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+
+    /**
+     * Add sectionResponsible
+     *
+     * @param \AppBundle\Entity\Section $sectionResponsible
+     *
+     * @return Administrator
+     */
+    public function addSectionResponsible(\AppBundle\Entity\Section $sectionResponsible)
+    {
+        $this->sectionResponsibles[] = $sectionResponsible;
+
+        return $this;
+    }
+
+    /**
+     * Remove sectionResponsible
+     *
+     * @param \AppBundle\Entity\Section $sectionResponsible
+     */
+    public function removeSectionResponsible(\AppBundle\Entity\Section $sectionResponsible)
+    {
+        $this->sectionResponsibles->removeElement($sectionResponsible);
+    }
+
+    /**
+     * Get sectionResponsibles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSectionResponsibles()
+    {
+        return $this->sectionResponsibles;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Administrator
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set facebookProfile
+     *
+     * @param string $facebookProfile
+     *
+     * @return Administrator
+     */
+    public function setFacebookProfile($facebookProfile)
+    {
+        $this->facebookProfile = $facebookProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get facebookProfile
+     *
+     * @return string
+     */
+    public function getFacebookProfile()
+    {
+        return $this->facebookProfile;
+    }
+
+    /**
+     * Set instagramProfile
+     *
+     * @param string $instagramProfile
+     *
+     * @return Administrator
+     */
+    public function setInstagramProfile($instagramProfile)
+    {
+        $this->instagramProfile = $instagramProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get instagramProfile
+     *
+     * @return string
+     */
+    public function getInstagramProfile()
+    {
+        return $this->instagramProfile;
+    }
+
+    /**
+     * Set twitterProfile
+     *
+     * @param string $twitterProfile
+     *
+     * @return Administrator
+     */
+    public function setTwitterProfile($twitterProfile)
+    {
+        $this->twitterProfile = $twitterProfile;
+
+        return $this;
+    }
+
+    /**
+     * Get twitterProfile
+     *
+     * @return string
+     */
+    public function getTwitterProfile()
+    {
+        return $this->twitterProfile;
     }
 }

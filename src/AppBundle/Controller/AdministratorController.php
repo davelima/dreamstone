@@ -1,10 +1,12 @@
 <?php
 
-namespace AppBundle\Controller;
+namespace AppBundle\Controller\Dreamstone;
 
+use PHPImageWorkshop\ImageWorkshop;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Administrator;
 use AppBundle\Form\Type\AdministratorType;
@@ -12,7 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
 /**
- * @Route("/administrators", name="administrators") 
+ * @Route("/dreamstone/administrators", name="administrators")
  * @author David Lima
  */
 class AdministratorController extends Controller
@@ -25,8 +27,8 @@ class AdministratorController extends Controller
         $repository = $this->getDoctrine()->getRepository('AppBundle:Administrator');
         $administrators = $repository->findBy([], ['name' => 'ASC']);
 
-        return $this->render('administrators/index.html.twig', [
-            'pageTitle' => 'Administrators',
+        return $this->render('dreamstone/administrators/index.html.twig', [
+            'pageTitle' => 'Administradores',
             'administrators' => $administrators
         ]);
     }
@@ -44,17 +46,30 @@ class AdministratorController extends Controller
         if ($form->isValid() && $form->isSubmitted()) {
             $password = $this->get('security.password_encoder')
                               ->encodePassword($administrator, $administrator->getPlainPassword());
-            
+
             $administrator->setPassword($password);
+
+            if ($administrator->getPhoto() && $administrator->getPhoto() instanceof UploadedFile) {
+                $file = $administrator->getPhoto()->getRealPath();
+                $image = ImageWorkshop::initFromPath($file);
+                $image->cropToAspectRatioInPixel(500, 500, 0, 0, 'MM');
+                $image->resizeInPixel(500, 500, true);
+
+                $fileName = md5(uniqid()) . '.jpg';
+                $image->save(__DIR__ . '/../../../../web/uploads/', $fileName);
+                $administrator->setPhoto($fileName);
+            } else {
+                $administrator->setPhoto('no-photo.jpg');
+            }
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($administrator);
             $em->flush();
             
-            $response['message'] = 'Administrator created!';
+            $response['message'] = 'Administrador cadastrado!';
         }
 
-        return $this->render('administrators/create.html.twig', [
+        return $this->render('dreamstone/administrators/create.html.twig', [
             'form' => $form->createView(),
             'response' => $response
         ]);
@@ -69,16 +84,17 @@ class AdministratorController extends Controller
         $administrator = $em->getRepository('AppBundle:Administrator')->find($id);
         $form = $this->createForm(AdministratorType::class, $administrator);
         $superUser = $this->isGranted('ROLE_SUPER_ADMIN', $this->getUser());
+        $currentPhoto = $administrator->getPhoto();
 
         if ($superUser || $this->getUser()->getId() == $id) {
             $form->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'required' => false,
                 'options' => [
-                    'label' => 'Password'
+                    'label' => 'Senha'
                 ],
                 'second_options' => [
-                    'label' => 'Repeat password'
+                    'label' => 'Repetir senha'
                 ]
             ]);
         } else {
@@ -86,11 +102,11 @@ class AdministratorController extends Controller
         }
 
         if (! $superUser) {
-            $form->remove('super_user');
+            $form->remove('roles');
         }
 
         if (! $administrator) {
-            throw $this->createNotFoundException("Administrator not found");
+            throw $this->createNotFoundException('Administrador não encontrado');
         }
 
         $response = [];
@@ -106,13 +122,26 @@ class AdministratorController extends Controller
 
             $administrator->setPassword($password);
 
+            if ($administrator->getPhoto() && $administrator->getPhoto() instanceof UploadedFile) {
+                $file = $administrator->getPhoto()->getRealPath();
+                $image = ImageWorkshop::initFromPath($file);
+                $image->cropToAspectRatioInPixel(500, 500, 0, 0, 'MM');
+                $image->resizeInPixel(500, 500, true);
+
+                $fileName = md5(uniqid()) . '.jpg';
+                $image->save(__DIR__ . '/../../../../web/uploads/', $fileName);
+                $administrator->setPhoto($fileName);
+            } else {
+                $administrator->setPhoto($currentPhoto);
+            }
+
             $em->persist($administrator);
             $em->flush();
 
-            $response['message'] = 'Administrator updated!';
+            $response['message'] = 'Administrador atualizado!';
         }
 
-        return $this->render('administrators/create.html.twig', [
+        return $this->render('dreamstone/administrators/create.html.twig', [
             'form' => $form->createView(),
             'response' => $response,
             'administrator' => $administrator
@@ -122,13 +151,13 @@ class AdministratorController extends Controller
     /**
      * @Route("/profile/{id}/", name="administrator-profile")
      */
-    public function profileAction(Request $request, int $id)
+    public function profileAction(Request $request, $id)
     {
         $repository = $this->getDoctrine()->getRepository('AppBundle:Administrator');
         $administrator = $repository->find($id);
 
-        return $this->render('administrators/profile.html.twig', [
-            'pageTitle' => 'Administrators',
+        return $this->render('dreamstone/administrators/profile.html.twig', [
+            'pageTitle' => 'Administradores',
             'administrator' => $administrator
         ]);
     }
@@ -151,7 +180,7 @@ class AdministratorController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($administrator);
         $em->flush();
-        $result['message'] = $newStatus ? 'Account enabled!' : 'Account disabled!';
+        $result['message'] = $newStatus ? 'Conta ativada!' : 'Conta desativada!';
         $result['status'] = $newStatus;
 
         return $this->json($result);
