@@ -8,7 +8,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Nome</th>
+              <th>Name</th>
               <th>Login</th>
               <th class="hidden-xs">Email</th>
               <th class="hidden-xs"><i class="glyphicon glyphicon-option-vertical"></i></th>
@@ -28,8 +28,8 @@
         {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <a href="{{ path('administrator-switch-status') }}"
                     data-id="{{ administrator.id }}"
-                    data-enable-message="Isso irá habilitar a conta de {{ administrator.username }}. Continuar?"
-                    data-disable-message="Isso irá desabilitar {{ administrator.username }}. Continuar?"
+                    data-enable-message="This will enable {{ administrator.username }}'s account. Continue?"
+                    data-disable-message="This will disable {{ administrator.username }}'s account. Continue?"
                     data-status="{{ administrator.isActive }}"
                     class="status-change-button btn btn-{% if administrator.isActive %}success{% else %}danger{% endif %}"
                 >

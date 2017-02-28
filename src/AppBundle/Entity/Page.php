@@ -34,11 +34,6 @@ class Page
     private $content;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $sidebar;
-
-    /**
      * @ORM\Column(type="boolean")
      */
     private $showOnMenu;
@@ -63,21 +58,6 @@ class Page
      * @ORM\JoinColumn(name="page_author", referencedColumnName="id")
      */
     private $author;
-
-    /**
-     * @ORM\Column(type="string", length=36)
-     */
-    private $featuredImage;
-
-    /**
-     * @ORM\Column(type="string", length=36)
-     */
-    private $shareImage;
-
-    /**
-     * @ORM\Column(type="string", length=7)
-     */
-    private $color;
 
     /**
      * Get id
@@ -159,30 +139,6 @@ class Page
     public function getContent()
     {
         return $this->content;
-    }
-
-    /**
-     * Set sidebar
-     *
-     * @param string $sidebar
-     *
-     * @return Page
-     */
-    public function setSidebar($sidebar)
-    {
-        $this->sidebar = $sidebar;
-
-        return $this;
-    }
-
-    /**
-     * Get sidebar
-     *
-     * @return string
-     */
-    public function getSidebar()
-    {
-        return $this->sidebar;
     }
 
     /**
@@ -303,77 +259,5 @@ class Page
     public function getAuthor()
     {
         return $this->author;
-    }
-
-    /**
-     * Set featuredImage
-     *
-     * @param string $featuredImage
-     *
-     * @return Page
-     */
-    public function setFeaturedImage($featuredImage)
-    {
-        $this->featuredImage = $featuredImage;
-
-        return $this;
-    }
-
-    /**
-     * Get featuredImage
-     *
-     * @return string
-     */
-    public function getFeaturedImage()
-    {
-        return $this->featuredImage;
-    }
-
-    /**
-     * Set shareImage
-     *
-     * @param string $shareImage
-     *
-     * @return Page
-     */
-    public function setShareImage($shareImage)
-    {
-        $this->shareImage = $shareImage;
-
-        return $this;
-    }
-
-    /**
-     * Get shareImage
-     *
-     * @return string
-     */
-    public function getShareImage()
-    {
-        return $this->shareImage;
-    }
-
-    /**
-     * Set color
-     *
-     * @param string $color
-     *
-     * @return Page
-     */
-    public function setColor($color)
-    {
-        $this->color = $color;
-
-        return $this;
-    }
-
-    /**
-     * Get color
-     *
-     * @return string
-     */
-    public function getColor()
-    {
-        return $this->color;
     }
 }

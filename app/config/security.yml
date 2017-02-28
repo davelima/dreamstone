@@ -21,11 +21,14 @@ security:
                 check_path: login
                 provider: our_db_provider
             logout:
-                path:   /logout/
-                target: /login/
+                path:   /dreamstone/logout/
+                target: /dreamstone/login/
 
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+        ROLE_ADMIN: []
 
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/administrators/create/, roles: ROLE_SUPER_ADMIN }
-        - { path: ^/, roles: ROLE_ADMIN }
+        - { path: ^/dreamstone/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dreamstone/administrators/create/, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/dreamstone/, roles: ROLE_ADMIN }

@@ -1,4 +1,4 @@
-{% extends 'base-unauthenticated.html.twig' %}
+{% extends 'dreamstone/base-unauthenticated.html.twig' %}
 
 {% block body %}
 {% if error %}
@@ -7,11 +7,13 @@
 
 <div class="login-box">
   <div class="login-logo">
-    <a href="#"><b>Dreamstone</b></a>
+    <a href="#">
+      <img src="{{ asset('/assets/images/logo.png') }}" alt="Dreamstone" class="img-responsive">
+    </a>
   </div>
 
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Enter with your credentials</p>
 
     <form action="{{ path('login') }}" method="post">
       <div class="form-group has-feedback">
@@ -24,7 +26,8 @@
       </div>
       <div class="row">
         <div class="col-xs-4 col-xs-offset-8">
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+          <input type="hidden" name="_target_path" value="/dreamstone/" />
+          <button type="submit" class="btn btn-primary btn-block btn-flat">Enter</button>
         </div>
       </div>
     </form>

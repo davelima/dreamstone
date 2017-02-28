@@ -17,4 +17,5 @@
 .settings/
 /web/assets/bower/
 composer.lock
+/web/uploads/
 

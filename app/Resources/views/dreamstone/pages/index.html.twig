@@ -8,8 +8,8 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Título</th>
-              <th>Exibir no menu</th>
+              <th>Title</th>
+              <th>Show on menu</th>
               <th><i class="glyphicon glyphicon-option-vertical"></i></th>
             </tr>
           </thead>
@@ -17,15 +17,15 @@
 {% for page in pages %}
             <tr>
               <td>{{ page.title }}</td>
-              <td>{{ page.showOnMenu ? 'Sim' : 'Não' }}</td>
+              <td>{{ page.showOnMenu ? 'Yes' : 'No' }}</td>
               <td class="btn-group">
                 <a href="{{ path('pages-edit', {'id': page.id}) }}" class="btn btn-default">
                   <i class="glyphicon glyphicon-pencil"></i>
                 </a>
                 <a href="{{ path('page-switch-status') }}"
                    data-id="{{ page.id }}"
-                   data-enable-message="Isso irá habilitar a página {{ page.title }}. Continuar?"
-                   data-disable-message="Isso irá desabilitar a página {{ page.title }}. Continuar?"
+                   data-enable-message="This will enable the page {{ page.title }}. Continue?"
+                   data-disable-message="This will disable the page {{ page.title }}. Continue?"
                    data-status="{{ page.status }}"
                    class="status-change-button btn btn-{% if page.status %}success{% else %}danger{% endif %}"
                 >

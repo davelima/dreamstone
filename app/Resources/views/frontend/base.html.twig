@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <title>{{ pageTitle is defined ? pageTitle ~ ' :: ' : ''}}Dreamstone</title>
+    {% block stylesheets %}{% endblock %}
+</head>
+<body>
+
+<header>
+    <h1 class="text-center">Dreamstone</h1>
+</header>
+
+{% block body %}{% endblock %}
+{% block javascripts %}{% endblock %}
+
+{% block scripts %}
+{% endblock %}
+
+</body>
+</html>

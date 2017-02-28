@@ -28,7 +28,7 @@ class PageController extends Controller
         $pages = $repository->findAll();
 
         return $this->render('dreamstone/pages/index.html.twig', [
-            'pageTitle' => 'Páginas',
+            'pageTitle' => 'Pages',
             'pages' => $pages
         ]);
     }
@@ -183,7 +183,7 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($page);
         $em->flush();
-        $result['message'] = $newStatus ? 'Página ativada!' : 'Página desativada!';
+        $result['message'] = $newStatus ? 'Page enabled!' : 'Page disabled!';
         $result['status'] = $newStatus;
 
         return $this->json($result);

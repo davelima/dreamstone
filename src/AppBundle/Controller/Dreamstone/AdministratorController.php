@@ -28,7 +28,7 @@ class AdministratorController extends Controller
         $administrators = $repository->findBy([], ['name' => 'ASC']);
 
         return $this->render('dreamstone/administrators/index.html.twig', [
-            'pageTitle' => 'Administradores',
+            'pageTitle' => 'Administrators',
             'administrators' => $administrators
         ]);
     }
@@ -66,7 +66,7 @@ class AdministratorController extends Controller
             $em->persist($administrator);
             $em->flush();
             
-            $response['message'] = 'Administrador cadastrado!';
+            $response['message'] = 'Administrator created!';
         }
 
         return $this->render('dreamstone/administrators/create.html.twig', [
@@ -91,10 +91,10 @@ class AdministratorController extends Controller
                 'type' => PasswordType::class,
                 'required' => false,
                 'options' => [
-                    'label' => 'Senha'
+                    'label' => 'Password'
                 ],
                 'second_options' => [
-                    'label' => 'Repetir senha'
+                    'label' => 'Repeat password'
                 ]
             ]);
         } else {
@@ -106,7 +106,7 @@ class AdministratorController extends Controller
         }
 
         if (! $administrator) {
-            throw $this->createNotFoundException('Administrador não encontrado');
+            throw $this->createNotFoundException('Administrator not found');
         }
 
         $response = [];
@@ -138,7 +138,7 @@ class AdministratorController extends Controller
             $em->persist($administrator);
             $em->flush();
 
-            $response['message'] = 'Administrador atualizado!';
+            $response['message'] = 'Administrator updated!';
         }
 
         return $this->render('dreamstone/administrators/create.html.twig', [
@@ -157,7 +157,7 @@ class AdministratorController extends Controller
         $administrator = $repository->find($id);
 
         return $this->render('dreamstone/administrators/profile.html.twig', [
-            'pageTitle' => 'Administradores',
+            'pageTitle' => 'Administrators',
             'administrator' => $administrator
         ]);
     }
@@ -180,7 +180,7 @@ class AdministratorController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($administrator);
         $em->flush();
-        $result['message'] = $newStatus ? 'Conta ativada!' : 'Conta desativada!';
+        $result['message'] = $newStatus ? 'Account enabled!' : 'Account disabled!';
         $result['status'] = $newStatus;
 
         return $this->json($result);

@@ -32,8 +32,12 @@
 <div class="wrapper">
   <header class="main-header">
     <a href="{{ path('homepage') }}" class="logo">
-      <span class="logo-mini"><b>A</b>LT</span>
-      <span class="logo-lg"><b>S.H.I.E.L.D</b></span>
+      <span class="logo-mini">
+        <img src="{{ asset('/assets/images/logo-mini.png') }}" alt="Dreamstone" class="img-responsive">
+      </span>
+      <span class="logo-lg">
+        <img src="{{ asset('/assets/images/logo.png') }}" alt="Dreamstone" style="margin: -5px auto 0 auto; position: relative;">
+      </span>
     </a>
 
     <nav class="navbar navbar-static-top" role="navigation">
@@ -44,22 +48,22 @@
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="https://www.gravatar.com/avatar/{{ app.user.md5email }}" class="user-image" alt="User Image">
+              <img src="/uploads/{{ app.user.photo }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ app.user.name }}</span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
-                <img src="https://www.gravatar.com/avatar/{{ app.user.md5email }}" class="img-circle" alt="User Image">
+                <img src="/uploads/{{ app.user.photo }}" class="img-circle" alt="User Image">
                 <p>
                   {{ app.user.name }}
                 </p>
               </li>
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="{{ path('administrator-profile', {id: app.user.id}) }}" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{ path('administrator-profile', {id: app.user.id}) }}" class="btn btn-default btn-flat">Meu perfil</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ path('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="{{ path('logout') }}" class="btn btn-default btn-flat">Sair</a>
                 </div>
               </li>
             </ul>
@@ -81,10 +85,24 @@
           <ul class="treeview-menu">
             <li><a href="{{ path('administrators-list') }}">List</a></li>
 {% if is_granted('ROLE_SUPER_ADMIN') %}
-            <li><a href="{{ path('administrators-create') }}">Register new</a></li>
+            <li><a href="{{ path('administrators-create') }}">Create</a></li>
 {% endif %}
           </ul>
         </li>
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
+        <li class="treeview">
+          <a href="#"><i class="fa fa-file-text"></i> <span>Pages</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ path('pages-list') }}">List</a></li>
+            <li><a href="{{ path('pages-create') }}">Create</a></li>
+          </ul>
+        </li>
+{% endif %}
       </ul>
     </section>
   </aside>

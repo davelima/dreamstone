@@ -73,11 +73,6 @@ class Administrator implements AdvancedUserInterface, \Serializable
      */
     private $twitterProfile;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Section", mappedBy="responsibles")
-     */
-    private $sectionResponsibles;
-
     private $plainPassword;
 
     public function __construct()
@@ -329,40 +324,6 @@ class Administrator implements AdvancedUserInterface, \Serializable
     public function getPhoto()
     {
         return $this->photo;
-    }
-
-    /**
-     * Add sectionResponsible
-     *
-     * @param \AppBundle\Entity\Section $sectionResponsible
-     *
-     * @return Administrator
-     */
-    public function addSectionResponsible(\AppBundle\Entity\Section $sectionResponsible)
-    {
-        $this->sectionResponsibles[] = $sectionResponsible;
-
-        return $this;
-    }
-
-    /**
-     * Remove sectionResponsible
-     *
-     * @param \AppBundle\Entity\Section $sectionResponsible
-     */
-    public function removeSectionResponsible(\AppBundle\Entity\Section $sectionResponsible)
-    {
-        $this->sectionResponsibles->removeElement($sectionResponsible);
-    }
-
-    /**
-     * Get sectionResponsibles
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getSectionResponsibles()
-    {
-        return $this->sectionResponsibles;
     }
 
     /**
