@@ -1,8 +1,13 @@
-postgres:
-  image: tozd/postgresql
-  container_name: dreamstone-postgres
+dreamstone-mariadb:
+  image: mariadb
+  container_name: dreamstone-mariadb
   ports:
-    - "5432:5432"
+    - "3306:3306"
   volumes:
-    - /var/lib/postgresql
-
+    - ./.mysqldata:/var/lib/mysql
+  environment:
+    - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    - MYSQL_DATABASE=dreamstone
+    - MYSQL_USER=dreamstone
+    - MYSQL_PASSWORD=dreamstone
+    - TZ=America/Sao_Paulo
