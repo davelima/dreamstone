@@ -11,7 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Form\Type\PageType;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * @Route("/dreamstone/pages", name="pages")
@@ -50,35 +49,21 @@ class PageController extends Controller
             $page->setStatus(true);
             $page->setSlug(Urls::slugify($page->getTitle()));
 
-            if ($page->getFeaturedImage() && $page->getFeaturedImage() instanceof UploadedFile) {
-                $file = $page->getFeaturedImage()->getRealPath();
+            if ($page->getImage() && $page->getImage() instanceof UploadedFile) {
+                $file = $page->getImage()->getRealPath();
                 $image = ImageWorkshop::initFromPath($file);
-                $image->cropToAspectRatioInPixel(1000, 1000, 0, 0, 'MM');
-                $image->resizeInPixel(1000, 1000, true);
+                $image->resizeInPixel(1000, null, true);
 
                 $fileName = md5(uniqid()) . '.jpg';
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/', $fileName);
 
-                $image->cropToAspectRatioInPixel(500, 500, 0, 0, 'MM');
-                $image->resizeInPixel(500, 500, true);
+                $image->resizeInPixel(500, null, true);
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/m/', $fileName);
 
-                $image->cropToAspectRatioInPixel(250, 250, 0, 0, 'MM');
-                $image->resizeInPixel(250, 250, true);
+                $image->resizeInPixel(250, null, true);
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/p/', $fileName);
 
-                $page->setFeaturedImage($fileName);
-            }
-
-            if ($page->getShareImage() && $page->getShareImage() instanceof UploadedFile) {
-                $file = $page->getShareImage()->getRealPath();
-                $image = ImageWorkshop::initFromPath($file);
-                $image->cropToAspectRatioInPixel(1000, 500, 0, 0, 'MM');
-                $image->resizeInPixel(1000, 500, true);
-
-                $fileName = md5(uniqid()) . '.jpg';
-                $image->save(__DIR__ . '/../../../../web/uploads/pages/', $fileName);
-                $page->setShareImage($fileName);
+                $page->setImage($fileName);
             }
 
             $em = $this->getDoctrine()->getManager();
@@ -101,8 +86,7 @@ class PageController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
         $page = $em->getRepository('AppBundle:Page')->find($id);
-        $currentFeaturedImage = $page->getFeaturedImage();
-        $currentShareImage = $page->getShareImage();
+        $currentImage = $page->getImage();
         $form = $this->createForm(PageType::class, $page);
 
 
@@ -117,41 +101,25 @@ class PageController extends Controller
             $page->setSlug(Urls::slugify($page->getTitle()));
             $page->setLastChange(new \DateTime());
 
-            if ($page->getFeaturedImage() && $page->getFeaturedImage() instanceof UploadedFile) {
-                $file = $page->getFeaturedImage()->getRealPath();
+            if ($page->getImage() && $page->getImage() instanceof UploadedFile) {
+                $file = $page->getImage()->getRealPath();
                 $image = ImageWorkshop::initFromPath($file);
-                $image->cropToAspectRatioInPixel(1000, 1000, 0, 0, 'MM');
-                $image->resizeInPixel(1000, 1000, true);
+                $image->resizeInPixel(1000, null, true);
 
                 $fileName = md5(uniqid()) . '.jpg';
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/', $fileName);
 
-                $image->cropToAspectRatioInPixel(500, 500, 0, 0, 'MM');
-                $image->resizeInPixel(500, 500, true);
+                $image->resizeInPixel(500, null, true);
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/m/', $fileName);
 
-                $image->cropToAspectRatioInPixel(250, 250, 0, 0, 'MM');
-                $image->resizeInPixel(250, 250, true);
+                $image->resizeInPixel(250, null, true);
                 $image->save(__DIR__ . '/../../../../web/uploads/pages/p/', $fileName);
 
-                $page->setFeaturedImage($fileName);
+                $page->setImage($fileName);
             } else {
-                $page->setFeaturedImage($currentFeaturedImage);
+                $page->setImage($currentImage);
             }
 
-
-            if ($page->getShareImage() && $page->getShareImage() instanceof UploadedFile) {
-                $file = $page->getShareImage()->getRealPath();
-                $image = ImageWorkshop::initFromPath($file);
-                $image->cropToAspectRatioInPixel(1000, 500, 0, 0, 'MM');
-                $image->resizeInPixel(1000, 500, true);
-
-                $fileName = md5(uniqid()) . '.jpg';
-                $image->save(__DIR__ . '/../../../../web/uploads/pages/', $fileName);
-                $page->setShareImage($fileName);
-            } else {
-                $page->setShareImage($currentShareImage);
-            }
 
             $em->persist($page);
             $em->flush();

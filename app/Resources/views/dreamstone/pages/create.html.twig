@@ -21,33 +21,19 @@
     <div class="col-xs-12 col-sm-4">
         {{ form_row(form.slug) }}
     </div>
-
-    <div class="col-xs-12 col-sm-4">
-        {{ form_row(form.color) }}
-    </div>
 </div>
 
           <div class="row">
               <div class="col-xs-12 col-md-6">
-                  {{ form_row(form.featuredImage) }}
+                  {{ form_row(form.image) }}
                   <a href="#" class="thumbnail">
-                      {% if page.featuredImage is defined %}
-                          <img src="/uploads/pages/p/{{ page.featuredImage }}" class="img-responsive">
-                      {% endif %}
-                  </a>
-              </div>
-
-              <div class="col-xs-12 col-md-6">
-                  {{ form_row(form.shareImage) }}
-                  <a href="#" class="thumbnail">
-                      {% if page.shareImage is defined %}
-                          <img src="/uploads/pages/{{ page.shareImage }}" class="img-responsive">
+                      {% if page.image is defined %}
+                          <img src="/uploads/pages/p/{{ page.image }}" class="img-responsive">
                       {% endif %}
                   </a>
               </div>
           </div>
 {{ form_row(form.content) }}
-{{ form_row(form.sidebar) }}
 {{ form_row(form.showOnMenu) }}
 {{ form_end(form) }}
       </div>

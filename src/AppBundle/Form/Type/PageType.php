@@ -27,12 +27,6 @@ class PageType extends AbstractType
         $builder->add('title', TextType::class, [
                     'label' => 'Título'
                 ])
-                ->add('color', TextType::class, [
-                    'attr' => [
-                        'class' => 'colorpicker'
-                    ],
-                    'label' => 'Cor'
-                ])
                 ->add('slug', TextType::class, [
                     'label' => 'URL',
                     'required' => false
@@ -43,27 +37,13 @@ class PageType extends AbstractType
                     ],
                     'label' => 'Texto'
                 ])
-                ->add('sidebar', TextareaType::class, [
-                    'attr' => [
-                        'class' => 'tinymce'
-                    ],
-                    'label' => 'Texto (lateral)'
-                ])
-                ->add('featuredImage', FileType::class, [
+                ->add('image', FileType::class, [
                     'attr' => [
                         'accept' => 'image/*'
                     ],
                     'required' => false,
                     'data_class' => null,
-                    'label' => 'Imagem de fundo'
-                ])
-                ->add('shareImage', FileType::class, [
-                    'attr' => [
-                        'accept' => 'image/*'
-                    ],
-                    'required' => false,
-                    'data_class' => null,
-                    'label' => 'Imagem de compartilhamento'
+                    'label' => 'Imagem'
                 ])
                 ->add('showOnMenu', CheckboxType::class, [
                     'label' => 'Exibir no menu?',

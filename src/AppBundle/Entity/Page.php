@@ -54,6 +54,11 @@ class Page
     private $lastChange;
 
     /**
+     * @ORM\Column(type="string", length=36, nullable=true)
+     */
+    private $image;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Administrator")
      * @ORM\JoinColumn(name="page_author", referencedColumnName="id")
      */
@@ -259,5 +264,29 @@ class Page
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     *
+     * @return Page
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 }
