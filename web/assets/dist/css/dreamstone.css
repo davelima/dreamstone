@@ -1,3 +1,7 @@
 .administrator-profile h2 {
   margin-top: 0;
 }
+
+.children-tr i.fa-level-up {
+  margin-left: 30px;
+}

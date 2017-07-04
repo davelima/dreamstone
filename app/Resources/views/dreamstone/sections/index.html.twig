@@ -1,0 +1,71 @@
+{% extends 'dreamstone/base.html.twig' %}
+
+{% block body %}
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="box box-primary">
+        <div class="box-body no-padding">
+          <table class="table table-striped">
+            <thead>
+            <tr>
+              <th>Título</th>
+              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for section in sections %}
+                {% if section.title is defined %}
+                  <tr>
+                    <td>{{ section.title }}</td>
+                    <td class="btn-group">
+                        {% if is_granted('ROLE_SUPER_ADMIN') %}
+                          <a href="{{ path('section-edit', {'id': section.id}) }}" class="btn btn-default">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                          </a>
+                          <a href="{{ path('section-switch-status') }}"
+                             data-id="{{ section.id }}"
+                             data-enable-message="Isso irá habilitar a seção {{ section.title }}. Continuar?"
+                             data-disable-message="Isso irá desabilitar a seção {{ section.title }}. Continuar?"
+                             data-status="{{ section.status }}"
+                             class="status-change-button btn btn-{% if section.status %}success{% else %}danger{% endif %}"
+                          >
+                            <i class="fa fa-{% if section.status %}check{% else %}times{% endif %}-circle"></i>
+                          </a>
+                        {% endif %}
+                    </td>
+                  </tr>
+                    {% if childrens[section.id] is defined and childrens[section.id]|length %}
+                        {% for children in childrens[section.id] %}
+                          <tr class="children-tr">
+                            <td><i class="fa fa-level-up fa-rotate-90"></i> {{ children.title }}</td>
+                            <td class="btn-group">
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                  <a href="{{ path('section-edit', {'id': children.id}) }}" class="btn btn-default">
+                                    <i class="glyphicon glyphicon-pencil"></i>
+                                  </a>
+                                  <a href="{{ path('section-switch-status') }}"
+                                     data-id="{{ children.id }}"
+                                     data-enable-message="Isso irá habilitar a seção {{ children.title }}. Continuar?"
+                                     data-disable-message="Isso irá desabilitar a seção {{ children.title }}. Continuar?"
+                                     data-status="{{ children.status }}"
+                                     class="status-change-button btn btn-{% if children.status %}success{% else %}danger{% endif %}"
+                                  >
+                                    <i class="fa fa-{% if children.status %}check{% else %}times{% endif %}-circle"></i>
+                                  </a>
+                                {% endif %}
+                            </td>
+                          </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
