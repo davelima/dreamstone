@@ -36,10 +36,9 @@
 {% for item in menus %}
     {% if item.section is defined %}
                 <li>
-                    <a href="{{ path('posts-read') }}">{{ item.title }}</a>
+                    <a href="#">{{ item.title }}</a>
                 </li>
     {% else %}
-
     {% endif %}
 {% endfor %}
             </ul>

@@ -1,0 +1,35 @@
+{% extends 'frontend/base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <article>
+                    <h1>{{ post.title }}</h1>
+                    <p class="post-meta">Posted by {{ post.author.name }}
+                        on <time pubdate="pubdate">{{ post.pubDate|date('d/m/Y H:i') }}</time>
+                    </p>
+                    <p class="post-meta tags">
+                        {% for tag in post.tags %}
+                            <a href="{{ tag.id }}" class="label label-info">{{ tag.id }}</a>
+                        {% endfor %}
+                    </p>
+                    {% if post.image is defined %}
+                        <img src="{{ asset('uploads/posts/m/' ~ post.image) }}"
+                             alt="{{ post.title }}" alt="{{ post.title }}"
+                             class="pull-left thumbnail">
+                    {% endif %}
+                    {{ post.body|raw }}
+
+                    <div class="clearfix"></div>
+                </article>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

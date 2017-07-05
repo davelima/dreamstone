@@ -6,11 +6,14 @@
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
 {% for post in posts %}
             <div class="post-preview">
-                <a href="post.html">
+                <a href="{{ path('posts-read', {
+                    'section': post.section.slug,
+                    'slug': post.slug
+                }) }}">
                     <h2 class="post-title">
                         {{ post.title }}
                     </h2>
-                    <p class="post-meta">Posted by <a href="#">{{ post.author.name }}</a> on {{ post.pubDate|date('d/m/Y H:i') }}</p>
+                    <p class="post-meta">Posted by {{ post.author.name }} on {{ post.pubDate|date('d/m/Y H:i') }}</p>
 
                     <!-- Will be used?
                     <h3 class="post-subtitle"></h3>

@@ -406,6 +406,11 @@ body {
     -webkit-tap-highlight-color: #0085A1;
 }
 
-.post-preview .thumbnail {
+.post-preview .thumbnail, article .thumbnail {
     margin-right: 10px;
+}
+
+.post-meta.tags a {
+    font-size: 10px;
+    text-decoration: none;
 }

@@ -64,7 +64,8 @@ class PostController extends Controller
             'post' => $post,
             'formattedPubdate' => $formattedPubdate,
             'pageTitle' => $post->getTitle(),
-            'tags' => $tags
+            'tags' => $tags,
+            'menus' => $menus->getSiteMenu()
         ]);
     }
 }
