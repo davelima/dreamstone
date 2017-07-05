@@ -20,3 +20,8 @@ services:
           - "@security.authorization_checker"
         tags:
           - { name: form.type }
+
+    utils.menus:
+        class: AppBundle\Utils\Menus
+        arguments:
+          - "@doctrine.orm.entity_manager"

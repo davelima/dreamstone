@@ -1,6 +1,7 @@
 <?php
 
 namespace AppBundle\Entity;
+use Doctrine\Common\Collections\Criteria;
 
 /**
  * PostRepository
@@ -10,4 +11,15 @@ namespace AppBundle\Entity;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findActive($limit, $page)
+    {
+        $criteria = new Criteria();
+        $criteria->where($criteria->expr()->eq('status', Post::STATUS_PUBLISHED))
+            ->orderBy([
+                'pubDate' => 'DESC'
+            ])
+            ->setMaxResults($limit);
+
+        return $this->matching($criteria);
+    }
 }
