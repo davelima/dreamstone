@@ -14,6 +14,8 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{ asset('assets/bower/bootstrap/dist/css/bootstrap.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/dist/css/AdminLTE.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}">
+  <link rel="stylesheet" href="{{ asset('assets/bower/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/dist/css/skins/skin-blue.min.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/dist/css/dreamstone.css') }}">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
@@ -115,6 +117,20 @@
           </ul>
         </li>
 {% endif %}
+
+        <li class="treeview">
+          <a href="#"><i class="fa fa-newspaper-o"></i> <span>Posts</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="{{ path('posts-list') }}">List</a></li>
+{% if is_granted('ROLE_AUTHOR') %}
+                <li><a href="{{ path('posts-create') }}">Create</a></li>
+{% endif %}
+          </ul>
+        </li>
       </ul>
     </section>
   </aside>
@@ -144,6 +160,11 @@
 </div>
 <script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>
 <script src="{{ asset('assets/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
+<script src="{{ asset('assets/bower/moment/moment.js') }}"></script>
+<script src="{{ asset('assets/bower/moment/locale/pt-br.js') }}"></script>
+<script src="{{ asset('assets/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('assets/bower/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
 <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/engine.js') }}"></script>
 <script src="{{ asset('assets/dist/js/dreamstone.js') }}"></script>

@@ -14,3 +14,9 @@ services:
         tags:
           - { name: form.type }
 
+    form.type.posts:
+        class: AppBundle\Form\Type\PostType
+        arguments:
+          - "@security.authorization_checker"
+        tags:
+          - { name: form.type }

@@ -25,7 +25,9 @@ security:
                 target: /dreamstone/login/
 
     role_hierarchy:
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN]
+        ROLE_SUPER_ADMIN: [ROLE_REVIEWER, ROLE_AUTHOR, ROLE_ADMIN]
+        ROLE_REVIEWER: [ROLE_ADMIN]
+        ROLE_AUTHOR: [ROLE_ADMIN]
         ROLE_ADMIN: []
 
     access_control:

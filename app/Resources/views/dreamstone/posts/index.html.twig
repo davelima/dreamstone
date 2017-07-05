@@ -1,0 +1,120 @@
+{% extends 'dreamstone/base.html.twig' %}
+
+{% block body %}
+<div class="box box-default">
+  <div class="box-body">
+    <form class="form">
+      <p>Filtrar</p>
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-2">
+          <label>Pesquisar</label>
+          <input type="search" placeholder="Título" name="q" class="form-control" value="{{ filters.q is defined ? filters.q : null }}">
+        </div>
+
+        {% if sections is defined %}
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <label>Seção</label>
+          <select size="1" name="section" class="form-control">
+            <option disabled {{ filters.section is not defined or filters.section == '' ? 'selected' : '' }}>Seção</option>
+            {% for section in sections %}
+            <option value="{{ section.id }}" {{ filters.section is defined and filters.section == section.id ? ' selected' : '' }}>{{ section.title }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        {% if statuses is defined %}
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <label>Status</label>
+          <select size="1" name="status" class="form-control">
+            <option disabled {{ filters.status is not defined or filters.status == '' ? 'selected' : '' }}>Status</option>
+            {% for statusId, statusName in statuses %}
+            <option value="{{ statusId }}" {{ filters.status is defined and filters.status == statusId ? 'selected' : '' }}>{{ statusName }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        {% if authors is defined %}
+        <div class="col-xs-12 col-sm-4 col-md-2">
+          <label>Autor</label>
+          <select size="1" name="author" class="form-control">
+            <option disabled {{ filters.author is not defined or filters.author == '' ? 'selected' : '' }}>Autor</option>
+            {% for author in authors %}
+            <option value="{{ author.id }}" {{ filters.author is defined and filters.author == author.id ? ' selected' : '' }}>{{ author.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        {% endif %}
+
+        <div class="col-xs-12 col-sm-6 col-md-2">
+          <label>Desde</label>
+          <input type="text" class="datepicker form-control" name="from" value="{{ filters.from is defined ? filters.from : '' }}">
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-2">
+          <label>Até</label>
+          <input type="text" class="datepicker form-control" name="to" value="{{ filters.to is defined ? filters.to : '' }}">
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <br>
+          <button type="submit" class="btn btn-block btn-info">Filtrar</button>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <br>
+          <a href="{{ path('posts-list') }}" class="btn btn-block btn-info">Limpar filtros</a>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <div class="box box-primary">
+      <div class="box-body no-padding">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th class="hidden-xs">Seção</th>
+              <th class="hidden-xs">Autor</th>
+              <th>Status</th>
+              <th class="hidden-xs">Data de publicação</th>
+              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+            </tr>
+          </thead>
+          <tbody>
+{% for post in posts %}
+            <tr>
+              <td>{{ post.title }}</td>
+              <td class="hidden-xs">{{ post.section.title }}</td>
+              <td class="hidden-xs">{{ post.author.name }}</td>
+              <td>{{ statuses[post.status] }}</td>
+              <td class="hidden-xs">{{ post.pubDate.format('d/m/Y H:i') }}</td>
+              <td class="btn-group">
+{%
+if
+(post.author == app.user and post.status == constant('AppBundle\\Entity\\Post::STATUS_DRAFT')) or
+is_granted('ROLE_SUPER_ADMIN') or
+(is_granted('ROLE_REVIEWER') and post.status == constant('AppBundle\\Entity\\Post::STATUS_PENDING_REVISION'))
+%}
+                <a href="{{ path('posts-edit', {'id': post.id}) }}" class="btn btn-default">
+                  <i class="glyphicon glyphicon-pencil"></i>
+                </a>
+{% endif %}
+              </td>
+            </tr>
+{% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
