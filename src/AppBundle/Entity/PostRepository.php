@@ -11,7 +11,7 @@ use Doctrine\Common\Collections\Criteria;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findActive($limit, $page)
+    public function findActive($limit, $page = 1, $section = null)
     {
         $criteria = new Criteria();
         $criteria->where($criteria->expr()->eq('status', Post::STATUS_PUBLISHED))
@@ -19,6 +19,10 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
                 'pubDate' => 'DESC'
             ])
             ->setMaxResults($limit);
+
+        if ($section instanceof Section) {
+            $criteria->where($criteria->expr()->eq('section', $section));
+        }
 
         return $this->matching($criteria);
     }

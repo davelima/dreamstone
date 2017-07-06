@@ -36,9 +36,16 @@
 {% for item in menus %}
     {% if item.section is defined %}
                 <li>
-                    <a href="#">{{ item.title }}</a>
+                    <a href="{{ path('pages-home', {
+                        'slug': item.slug
+                    }) }}">{{ item.title }}</a>
                 </li>
     {% else %}
+                <li>
+                    <a href="{{ path('section-front', {
+                        'slug': item.slug
+                    }) }}">{{ item.title }}</a>
+                </li>
     {% endif %}
 {% endfor %}
             </ul>

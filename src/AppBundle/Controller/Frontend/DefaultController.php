@@ -26,4 +26,31 @@ class DefaultController extends Controller
             'menus' => $menus->getSiteMenu()
         ]);
     }
+
+    /**
+     * @Route("/section/{slug}/", name="section-front")
+     */
+    public function sectionAction(Request $request, $slug)
+    {
+        $sectionRepository = $this->getDoctrine()->getRepository('AppBundle:Section');
+        $section = $sectionRepository->findOneBy([
+            'slug' => $slug
+        ]);
+
+        if (! $section) {
+            throw $this->createNotFoundException('Section not found');
+        }
+
+        $page = $request->get('page', 1);
+        $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $posts = $repository->findActive(10, $page, $section);
+
+        $menus = $this->container->get('utils.menus');
+
+        return $this->render('frontend/default/index.html.twig', [
+            'posts' => $posts,
+            'menus' => $menus->getSiteMenu(),
+            'pageTitle' => $section->getTitle()
+        ]);
+    }
 }
