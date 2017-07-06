@@ -1,7 +1,6 @@
 <?php
 
 namespace AppBundle\Entity;
-use Doctrine\Common\Collections\Criteria;
 
 /**
  * PostRepository
@@ -11,19 +10,21 @@ use Doctrine\Common\Collections\Criteria;
  */
 class PostRepository extends \Doctrine\ORM\EntityRepository
 {
-    public function findActive($limit, $page = 1, $section = null)
+    public function findActive($limit, $page = 1, $section = null, $tag = null)
     {
-        $criteria = new Criteria();
-        $criteria->where($criteria->expr()->eq('status', Post::STATUS_PUBLISHED))
-            ->orderBy([
-                'pubDate' => 'DESC'
-            ])
+        $qb = $this->createQueryBuilder('p');
+
+        $qb->where('p.status = :status')
+            ->orderBy('p.pubDate', 'DESC')
             ->setMaxResults($limit);
 
+        $qb->setParameter('status', Post::STATUS_PUBLISHED);
+
         if ($section instanceof Section) {
-            $criteria->where($criteria->expr()->eq('section', $section));
+            $qb->andWhere('p.section = :section');
+            $qb->setParameter('section', $section);
         }
 
-        return $this->matching($criteria);
+        return $qb->getQuery()->execute();
     }
 }
