@@ -11,7 +11,9 @@
                     </p>
                     <p class="post-meta tags">
                         {% for tag in post.tags %}
-                            <a href="{{ tag.id }}" class="label label-info">{{ tag.id }}</a>
+                            <a href="{{ path('tag-front', {
+                                'id': tag.id
+                            }) }}" class="label label-info">{{ tag.id }}</a>
                         {% endfor %}
                     </p>
                     {% if post.image is defined %}

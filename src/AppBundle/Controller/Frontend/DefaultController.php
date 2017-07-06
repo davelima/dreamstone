@@ -59,6 +59,16 @@ class DefaultController extends Controller
      */
     public function tagAction(Request $request, $id)
     {
+        $tagRepository = $this->getDoctrine()->getRepository('AppBundle:Tag');
+
+        $tag = $tagRepository->findOneBy([
+            'id' => $id
+        ]);
+
+        if (! $tag) {
+            throw $this->createNotFoundException('Tag not found');
+        }
+
         $page = $request->get('page', 1);
         $repository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $posts = $repository->findActive(10, $page, null, $id);
@@ -68,7 +78,7 @@ class DefaultController extends Controller
         return $this->render('frontend/default/index.html.twig', [
             'posts' => $posts,
             'menus' => $menus->getSiteMenu(),
-            'pageTitle' => $section->getTitle()
+            'pageTitle' => $tag->getId()
         ]);
     }
 }

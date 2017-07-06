@@ -25,6 +25,11 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
             $qb->setParameter('section', $section);
         }
 
+        if ($tag) {
+            $qb->innerJoin('p.tags', 't', 'WITH', 't.id = :tag')
+                ->setParameter('tag', $tag);
+        }
+
         return $qb->getQuery()->execute();
     }
 }
