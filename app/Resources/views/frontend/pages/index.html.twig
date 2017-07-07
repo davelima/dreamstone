@@ -1,7 +1,22 @@
 {% extends 'frontend/base.html.twig' %}
 
 {% block body %}
-{{ page.content }}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+            <div class="page-body">
+            {% if page.image is defined %}
+                <p class="text-center">
+                    <img src="{{ asset('uploads/pages/m/' ~ page.image) }}"
+                        alt="{{ page.title }}" alt="{{ page.title }}"
+                        class="thumbnail">
+                </p>
+            {% endif %}
+            {{ page.content|raw }}
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 {% block stylesheets %}

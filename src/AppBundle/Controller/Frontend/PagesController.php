@@ -19,6 +19,8 @@ class PagesController extends Controller
      */
     public function indexAction(Request $request, $slug)
     {
+        $menus = $this->container->get('utils.menus');
+
         $pageRepository = $this->getDoctrine()->getRepository('AppBundle:Page');
         $page = $pageRepository->findOneBy([
             'slug' => $slug,
@@ -26,13 +28,13 @@ class PagesController extends Controller
         ]);
 
         if (! $page) {
-            echo '404';
-            exit();
+            throw $this->createNotFoundException('Page not found');
         }
 
         return $this->render('frontend/pages/index.html.twig', [
             'page' => $page,
-            'pageTitle' => $page->getTitle()
+            'pageTitle' => $page->getTitle(),
+            'menus' => $menus->getSiteMenu()
         ]);
     }
 }
