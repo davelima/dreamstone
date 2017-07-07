@@ -43,7 +43,7 @@ class AdministratorController extends Controller
         $response = [];
 
         $form->handleRequest($request);
-        if ($form->isValid() && $form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $password = $this->get('security.password_encoder')
                               ->encodePassword($administrator, $administrator->getPlainPassword());
 
@@ -112,7 +112,7 @@ class AdministratorController extends Controller
         $response = [];
 
         $form->handleRequest($request);
-        if ($form->isValid() && $form->isSubmitted()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             if ($administrator->getPlainPassword()) {
                 $password = $this->get('security.password_encoder')
                 ->encodePassword($administrator, $administrator->getPlainPassword());
