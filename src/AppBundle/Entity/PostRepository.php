@@ -15,10 +15,12 @@ class PostRepository extends \Doctrine\ORM\EntityRepository
         $qb = $this->createQueryBuilder('p');
 
         $qb->where('p.status = :status')
+            ->andWhere('p.pubDate <= :now')
             ->orderBy('p.pubDate', 'DESC')
             ->setMaxResults($limit);
 
         $qb->setParameter('status', Post::STATUS_PUBLISHED);
+        $qb->setParameter('now', new \DateTime());
 
         if ($section instanceof Section) {
             $qb->andWhere('p.section = :section');
