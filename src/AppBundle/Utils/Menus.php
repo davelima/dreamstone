@@ -18,7 +18,10 @@ class Menus
     {
         $sectionRepository = $this->em->getRepository('AppBundle:Section');
         $pageRepository = $this->em->getRepository('AppBundle:Page');
-        $menu = [];
+        $menu = [
+            'sections' => [],
+            'pages' => []
+        ];
 
         $sections = $sectionRepository->findBy([
             'status' => true,
@@ -31,11 +34,11 @@ class Menus
         ]);
 
         foreach ($sections as $section) {
-            $menu[] = $section;
+            $menu['sections'][] = $section;
         }
 
         foreach ($pages as $page) {
-            $menu[] = $page;
+            $menu['pages'][] = $page;
         }
 
         return $menu;

@@ -34,20 +34,19 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
-{% for item in menus %}
-    {% if item.section is defined %}
-                <li>
-                    <a href="{{ path('pages-home', {
-                        'slug': item.slug
-                    }) }}">{{ item.title }}</a>
-                </li>
-    {% else %}
-                <li>
-                    <a href="{{ path('section-front', {
-                        'slug': item.slug
-                    }) }}">{{ item.title }}</a>
-                </li>
-    {% endif %}
+{% for section in menus.sections %}
+    <li>
+        <a href="{{ path('section-front', {
+            'slug': section.slug
+        }) }}">{{ section.title }}</a>
+    </li>
+{% endfor %}
+{% for page in menus.pages %}
+    <li>
+        <a href="{{ path('pages-home', {
+            'slug': page.slug
+        }) }}">{{ page.title }}</a>
+    </li>
 {% endfor %}
             </ul>
         </div>
