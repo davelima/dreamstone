@@ -36,6 +36,24 @@
             </div>
             <hr>
     {% endfor %}
+            <ul class="pager">
+    {% if (pagination.prev) %}
+                <li class="previous">
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params')) }}?page={{ pagination.prev }}">
+                        <i class="fa fa-angle-left"></i> Newer
+                    </a>
+                </li>
+    {% endif %}
+    {% if (pagination.next) %}
+                <li class="next">
+                    <a href="{{ path(app.request.attributes.get('_route'),
+                    app.request.attributes.get('_route_params')) }}?page={{ pagination.next }}">
+                        Older <i class="fa fa-angle-right"></i>
+                    </a>
+                </li>
+    {% endif %}
+            </ul>
 {% else %}
             <p class="alert alert-warning text-center">No posts found</p>
             <hr>
