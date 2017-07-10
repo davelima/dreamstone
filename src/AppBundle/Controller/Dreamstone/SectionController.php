@@ -53,6 +53,8 @@ class SectionController extends Controller
      */
     public function createAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $section = new Section();
         $form = $this->createForm(SectionType::class, $section);
         $response = [];
@@ -68,7 +70,7 @@ class SectionController extends Controller
             $em->persist($section);
             $em->flush();
 
-            $response['message'] = 'Seção cadastrada!';
+            $response['message'] = $translator->trans('section_created');
         }
 
         return $this->render('dreamstone/sections/create.html.twig', [
@@ -83,13 +85,15 @@ class SectionController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         $em = $this->getDoctrine()->getManager();
         $section = $em->getRepository('AppBundle:Section')->find($id);
         $form = $this->createForm(SectionType::class, $section);
 
 
         if (! $section) {
-            throw $this->createNotFoundException("Seção não encontrada");
+            throw $this->createNotFoundException($translator->trans('section_not_found'));
         }
 
         $response = [];
@@ -101,7 +105,7 @@ class SectionController extends Controller
             $em->persist($section);
             $em->flush();
 
-            $response['message'] = 'Seção atualizada!';
+            $response['message'] = $translator->trans('section_update');
         }
 
         return $this->render('dreamstone/sections/create.html.twig', [
@@ -117,6 +121,8 @@ class SectionController extends Controller
      */
     public function switchStatusAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $result = [];
 
         $id = $request->request->get('id');
@@ -129,7 +135,7 @@ class SectionController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($section);
         $em->flush();
-        $result['message'] = $newStatus ? 'Section enabled!' : 'Section disabled!';
+        $result['message'] = $newStatus ? $translator->trans('section_enabled') : $translator->trans('section_disabled');
         $result['status'] = $newStatus;
 
         return $this->json($result);

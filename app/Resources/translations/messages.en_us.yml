@@ -1,0 +1,54 @@
+logout: Logout
+my_profile: My Profile
+administrators: Administrators
+pages: Pages
+section: Section
+sections: Sections
+posts: Posts
+list: List
+create: Create
+dashboard: Dashboard
+name: Name
+login: Login
+email: Email
+photo: Photo
+password: Password
+repeat_password: Repeat password
+description: Description
+role: Role
+title: Title
+show_on_menu: Show on meun
+image: Image
+text: Text
+parent_section: Parent section
+save: Save
+filter: Filter
+search: Search
+status: Status
+author: Author
+date_from: From
+date_to: To
+pub_date: Pub date
+tags: Tags
+yes: Yes
+no: No
+clear_filters: Clear filters
+choose: Choose
+short_description: Short Description
+status_draft: Draft
+status_pending_revision: Pending Revision
+status_revised: Revised
+status_scheduled: Scheduled
+status_published: Published
+status_removed: Removed
+url: URL
+username: Username
+instagram: Instagram
+twitter: Twitter
+facebook: Facebook
+role_super_administrator: Super Administrator
+role_administrator: Administrator
+role_author: Author
+role_reviewer: Reviewer
+message_confirm_enable: Do you really want to enable this item?
+message_confirm_disable: Do you really want to disable this item?

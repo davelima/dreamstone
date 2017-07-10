@@ -24,8 +24,8 @@
                           </a>
                           <a href="{{ path('section-switch-status') }}"
                              data-id="{{ section.id }}"
-                             data-enable-message="Isso irá habilitar a seção {{ section.title }}. Continuar?"
-                             data-disable-message="Isso irá desabilitar a seção {{ section.title }}. Continuar?"
+                             data-enable-message="{{ "message_confirm_enable"|trans }}"
+                             data-disable-message="{{ "message_confirm_disable"|trans }}"
                              data-status="{{ section.status }}"
                              class="status-change-button btn btn-{% if section.status %}success{% else %}danger{% endif %}"
                           >
@@ -45,8 +45,8 @@
                                   </a>
                                   <a href="{{ path('section-switch-status') }}"
                                      data-id="{{ children.id }}"
-                                     data-enable-message="Isso irá habilitar a seção {{ children.title }}. Continuar?"
-                                     data-disable-message="Isso irá desabilitar a seção {{ children.title }}. Continuar?"
+                                     data-enable-message="{{ "message_confirm_enable"|trans }}"
+                                     data-disable-message="{{ "message_confirm_disable"|trans }}"
                                      data-status="{{ children.status }}"
                                      class="status-change-button btn btn-{% if children.status %}success{% else %}danger{% endif %}"
                                   >

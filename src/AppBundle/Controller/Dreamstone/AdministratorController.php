@@ -24,11 +24,13 @@ class AdministratorController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $repository = $this->getDoctrine()->getRepository('AppBundle:Administrator');
         $administrators = $repository->findBy([], ['name' => 'ASC']);
 
         return $this->render('dreamstone/administrators/index.html.twig', [
-            'pageTitle' => 'Administrators',
+            'pageTitle' => $translator->trans('administrators'),
             'administrators' => $administrators
         ]);
     }
@@ -38,6 +40,8 @@ class AdministratorController extends Controller
      */
     public function createAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $administrator = new Administrator();
         $form = $this->createForm(AdministratorType::class, $administrator);
         $response = [];
@@ -66,7 +70,7 @@ class AdministratorController extends Controller
             $em->persist($administrator);
             $em->flush();
             
-            $response['message'] = 'Administrator created!';
+            $response['message'] = $translator->trans('administrator_created');
         }
 
         return $this->render('dreamstone/administrators/create.html.twig', [
@@ -80,6 +84,8 @@ class AdministratorController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         $em = $this->getDoctrine()->getManager();
         $administrator = $em->getRepository('AppBundle:Administrator')->find($id);
         $form = $this->createForm(AdministratorType::class, $administrator);
@@ -91,10 +97,10 @@ class AdministratorController extends Controller
                 'type' => PasswordType::class,
                 'required' => false,
                 'options' => [
-                    'label' => 'Password'
+                    'label' => 'password'
                 ],
                 'second_options' => [
-                    'label' => 'Repeat password'
+                    'label' => 'repeat_password'
                 ]
             ]);
         } else {
@@ -106,7 +112,7 @@ class AdministratorController extends Controller
         }
 
         if (! $administrator) {
-            throw $this->createNotFoundException('Administrator not found');
+            throw $this->createNotFoundException($translator->trans('administrator_not_found'));
         }
 
         $response = [];
@@ -138,7 +144,7 @@ class AdministratorController extends Controller
             $em->persist($administrator);
             $em->flush();
 
-            $response['message'] = 'Administrator updated!';
+            $response['message'] = $translator->trans('administrator_updated');
         }
 
         return $this->render('dreamstone/administrators/create.html.twig', [
@@ -153,11 +159,13 @@ class AdministratorController extends Controller
      */
     public function profileAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         $repository = $this->getDoctrine()->getRepository('AppBundle:Administrator');
         $administrator = $repository->find($id);
 
         return $this->render('dreamstone/administrators/profile.html.twig', [
-            'pageTitle' => 'Administrators',
+            'pageTitle' => $translator->trans('administrators'),
             'administrator' => $administrator
         ]);
     }
@@ -168,6 +176,8 @@ class AdministratorController extends Controller
      */
     public function switchStatusAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $result = [];
 
         $id = $request->request->get('id');
@@ -180,7 +190,7 @@ class AdministratorController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($administrator);
         $em->flush();
-        $result['message'] = $newStatus ? 'Account enabled!' : 'Account disabled!';
+        $result['message'] = $newStatus ? $translator->trans('account_enabled') : $translator->trans('account_disabled');
         $result['status'] = $newStatus;
 
         return $this->json($result);

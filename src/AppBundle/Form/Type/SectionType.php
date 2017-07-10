@@ -25,10 +25,10 @@ class SectionType extends AbstractType
         $this->entity = $options['data'];
 
         $builder->add('title', TextType::class, [
-                    'label' => 'Título'
+                    'label' => 'title'
                 ])
                 ->add('showOnMenu', CheckboxType::class, [
-                    'label' => 'Exibir no menu?',
+                    'label' => 'show_on_menu',
                     'required' => false
                 ])
                 ->add('parentSection', EntityType::class, [
@@ -42,15 +42,15 @@ class SectionType extends AbstractType
                         }
                     },
                     'choice_label' => 'title',
-                    'label' => 'Seção-pai',
-                    'placeholder' => 'Escolha uma opção',
+                    'label' => 'parent_section',
+                    'placeholder' => 'choose',
                     'required' => false
                 ])
                 ->add('submit', SubmitType::class, [
                     'attr' => [
                         'class' => 'btn btn-default'
                     ],
-                    'label' => 'Salvar'
+                    'label' => 'save'
                 ]);
     }
 }

@@ -42,21 +42,21 @@ class PostType extends AbstractType
         $this->entity = $options['data'];
 
         $builder->add('title', TextType::class, [
-                'label' => 'Título'
+                'label' => 'title'
             ])
             ->add('section', EntityType::class, [
                 'class' => 'AppBundle:Section',
                 'choice_label' => 'title',
                 'required' => true,
-                'placeholder' => 'Selecione uma seção',
-                'label' => 'Seção'
+                'placeholder' => 'choose',
+                'label' => 'section'
             ])
             ->add('author', EntityType::class, [
                 'class' => 'AppBundle:Administrator',
                 'choice_label' => 'name',
                 'required' => true,
-                'placeholder' => 'Selecione um autor',
-                'label' => 'Autor',
+                'placeholder' => 'author',
+                'label' => 'author',
                 'query_builder' => function(EntityRepository $repository) {
                     $qb = $repository->createQueryBuilder('u');
                     return $qb->where($qb->expr()->eq('u.isActive', '?1' ))
@@ -64,29 +64,31 @@ class PostType extends AbstractType
                 },
             ])
             ->add('status', ChoiceType::class, [
-                'choices' => $this->getStatusOptions()
+                'choices' => $this->getStatusOptions(),
+                'label' => 'status'
             ])
             ->add('tags', TextType::class, [
-                'required' => false
+                'required' => false,
+                'label' => 'tags'
             ])
             ->add('pubDate', TextType::class, [
                 'attr' => [
                     'type' => 'datetime'
                 ],
-                'label' => 'Data da publicação'
+                'label' => 'pub_date'
             ])
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'class' => 'tinymce-basic'
                 ],
-                'label' => 'Descrição curta'
+                'label' => 'short_description'
             ])
             ->add('body', TextareaType::class, [
                 'attr' => [
                     'class' => 'tinymce',
                     'style' => 'height: 300px'
                 ],
-                'label' => 'Texto'
+                'label' => 'text'
             ])
 
             ->add('image', FileType::class, [
@@ -95,14 +97,14 @@ class PostType extends AbstractType
                 ],
                 'required' => false,
                 'data_class' => null,
-                'label' => 'Imagem'
+                'label' => 'image'
             ])
 
             ->add('submit', SubmitType::class, [
                 'attr' => [
                     'class' => 'btn btn-default'
                 ],
-                'label' => 'Salvar'
+                'label' => 'save'
             ]);
     }
 
