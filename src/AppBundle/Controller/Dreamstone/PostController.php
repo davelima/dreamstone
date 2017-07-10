@@ -24,6 +24,8 @@ class PostController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $sectionRepository = $this->getDoctrine()->getRepository('AppBundle:Section');
         $sections = $sectionRepository->findAll();
 
@@ -120,7 +122,7 @@ class PostController extends Controller
             ->execute();
 
         return $this->render('dreamstone/posts/index.html.twig', [
-            'pageTitle' => 'Posts',
+            'pageTitle' => $translator->trans('posts'),
             'posts' => $posts,
             'sections' => $sections,
             'statuses' => $statuses,

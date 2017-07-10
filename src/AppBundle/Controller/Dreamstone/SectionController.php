@@ -22,6 +22,7 @@ class SectionController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $translator = $this->get('translator');
         $repository = $this->getDoctrine()->getRepository('AppBundle:Section');
         $sections = $repository->findBy([], ['parentSection' => 'DESC', 'title' => 'ASC']);
 
@@ -41,7 +42,7 @@ class SectionController extends Controller
         }
 
         return $this->render('dreamstone/sections/index.html.twig', [
-            'pageTitle' => 'Dashboard',
+            'pageTitle' => $translator->trans('sections'),
             'sections' => $sectionList,
             'childrens' => $childrens
         ]);
@@ -105,7 +106,7 @@ class SectionController extends Controller
             $em->persist($section);
             $em->flush();
 
-            $response['message'] = $translator->trans('section_update');
+            $response['message'] = $translator->trans('section_updated');
         }
 
         return $this->render('dreamstone/sections/create.html.twig', [

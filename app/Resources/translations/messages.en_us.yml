@@ -17,7 +17,7 @@ repeat_password: Repeat password
 description: Description
 role: Role
 title: Title
-show_on_menu: Show on meun
+show_on_menu: Show on menu
 image: Image
 text: Text
 parent_section: Parent section
@@ -52,3 +52,23 @@ role_author: Author
 role_reviewer: Reviewer
 message_confirm_enable: Do you really want to enable this item?
 message_confirm_disable: Do you really want to disable this item?
+section_created: Section created
+section_updated: Section updated
+section_enabled: Section enabled
+section_disabled: Section disabled
+section_not_found: Section not found
+administrator_created: Administrator created
+administrator_not_found: Administrator not found
+administrator_updated: Administrator updated
+account_enabled: Account enabled
+account_disabled: Account disabled
+page_created: Page created
+page_not_found: Page not found
+page_updated: Page updated
+page_enabled: Page enabled
+page_disabled: Page disabled
+permission_denied_create_post: You have no permission to create posts
+post_created: Post created
+post_not_found: Post not found
+permission_denied_edit_post: You have no permission to edit this post
+post_updated: Post updated

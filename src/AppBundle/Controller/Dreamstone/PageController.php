@@ -29,7 +29,7 @@ class PageController extends Controller
         $pages = $repository->findAll();
 
         return $this->render('dreamstone/pages/index.html.twig', [
-            'pageTitle' => 'pages',
+            'pageTitle' => $translator->trans('pages'),
             'pages' => $pages
         ]);
     }
