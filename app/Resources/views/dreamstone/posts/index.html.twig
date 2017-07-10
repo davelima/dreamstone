@@ -95,6 +95,21 @@
               <td>{{ statuses[post.status] }}</td>
               <td class="hidden-xs">{{ post.pubDate.format('d/m/Y H:i') }}</td>
               <td class="btn-group">
+                {% if post.status == constant('AppBundle\\Entity\\Post::STATUS_PUBLISHED') and post.pubDate <= date('now') %}
+                <a href="{{ path('posts-read', {
+                    'section': post.section.slug,
+                    'slug': post.slug
+                }) }}" class="btn btn-default" target="_blank">
+                  <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+                {% else %}
+                <a href="{{ path('posts-preview', {
+                    'section': post.section.slug,
+                    'slug': post.slug
+                }) }}" class="btn btn-default" target="_blank">
+                  <i class="glyphicon glyphicon-eye-open"></i>
+                </a>
+                {% endif %}
 {%
 if
 (post.author == app.user and post.status == constant('AppBundle\\Entity\\Post::STATUS_DRAFT')) or
