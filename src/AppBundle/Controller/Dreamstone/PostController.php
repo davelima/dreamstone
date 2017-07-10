@@ -134,7 +134,9 @@ class PostController extends Controller
      */
     public function createAction(Request $request)
     {
-        $this->denyAccessUnlessGranted(['ROLE_AUTHOR'], null, 'Você não tem permissão para criar novos posts');
+        $translator = $this->get('translator');
+
+        $this->denyAccessUnlessGranted(['ROLE_AUTHOR'], null, $translator->trans('permission_denied_create_post'));
 
         $post = new Post();
         $form = $this->createForm(PostType::class, $post);
@@ -196,7 +198,7 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
 
-            $response['message'] = 'Post criado!';
+            $response['message'] = $translator->trans('post_created');
         }
 
         return $this->render('dreamstone/posts/create.html.twig', [
@@ -210,13 +212,15 @@ class PostController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         $em = $this->getDoctrine()->getManager();
         $post = $em->getRepository('AppBundle:Post')->find($id);
         $currentImage = $post->getImage();
         $form = $this->createForm(PostType::class, $post);
 
         if (! $post) {
-            throw $this->createNotFoundException("Post não encontrado");
+            throw $this->createNotFoundException($translator->trans('post_not_found'));
         }
 
         if ($this->isGranted('ROLE_REVIEWER') &&
@@ -224,18 +228,18 @@ class PostController extends Controller
             $post->getStatus() != Post::STATUS_PENDING_REVISION
         )
         {
-            throw $this->createAccessDeniedException('Você não pode editar esta publicação');
+            throw $this->createAccessDeniedException($translator->trans('permission_denied_edit_post'));
         }
 
         if ($this->isGranted('ROLE_AUTHOR') &&
             ! $this->isGranted('ROLE_SUPER_ADMIN') &&
             $post->getStatus() != Post::STATUS_DRAFT
         ) {
-            throw $this->createAccessDeniedException('Você não pode editar esta publicação');
+            throw $this->createAccessDeniedException($translator->trans('permission_denied_edit_post'));
         }
 
         if ($post->getAuthor() != $this->getUser()) {
-            $this->denyAccessUnlessGranted(['ROLE_SUPER_ADMIN', 'ROLE_REVIEWER'], null, 'Você não tem permissão para editar esse post');
+            $this->denyAccessUnlessGranted(['ROLE_SUPER_ADMIN', 'ROLE_REVIEWER'], null, $translator->trans('permission_denied_edit_post'));
         }
 
         $response = [];
@@ -294,7 +298,7 @@ class PostController extends Controller
             $em->persist($post);
             $em->flush();
 
-            $response['message'] = 'Post atualizado!';
+            $response['message'] = $translator->trans('post_updated');
         }
 
         if (! $post->getImage()) {

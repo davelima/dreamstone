@@ -4,18 +4,18 @@
 <div class="box box-default">
   <div class="box-body">
     <form class="form">
-      <p>Filtrar</p>
+      <p>{{ "filter"|trans }}</p>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-2">
           <label>Pesquisar</label>
-          <input type="search" placeholder="Título" name="q" class="form-control" value="{{ filters.q is defined ? filters.q : null }}">
+          <input type="search" placeholder="{{ "title"|trans }}" name="q" class="form-control" value="{{ filters.q is defined ? filters.q : null }}">
         </div>
 
         {% if sections is defined %}
         <div class="col-xs-12 col-sm-4 col-md-2">
-          <label>Seção</label>
+          <label>{{ "section"|trans }}</label>
           <select size="1" name="section" class="form-control">
-            <option disabled {{ filters.section is not defined or filters.section == '' ? 'selected' : '' }}>Seção</option>
+            <option disabled {{ filters.section is not defined or filters.section == '' ? 'selected' : '' }}>{{ "section"|trans }}</option>
             {% for section in sections %}
             <option value="{{ section.id }}" {{ filters.section is defined and filters.section == section.id ? ' selected' : '' }}>{{ section.title }}</option>
             {% endfor %}
@@ -25,9 +25,9 @@
 
         {% if statuses is defined %}
         <div class="col-xs-12 col-sm-4 col-md-2">
-          <label>Status</label>
+          <label>{{ "status"|trans }}</label>
           <select size="1" name="status" class="form-control">
-            <option disabled {{ filters.status is not defined or filters.status == '' ? 'selected' : '' }}>Status</option>
+            <option disabled {{ filters.status is not defined or filters.status == '' ? 'selected' : '' }}>{{ "status"|trans }}</option>
             {% for statusId, statusName in statuses %}
             <option value="{{ statusId }}" {{ filters.status is defined and filters.status == statusId ? 'selected' : '' }}>{{ statusName }}</option>
             {% endfor %}
@@ -37,9 +37,9 @@
 
         {% if authors is defined %}
         <div class="col-xs-12 col-sm-4 col-md-2">
-          <label>Autor</label>
+          <label>{{ "author"|trans }}</label>
           <select size="1" name="author" class="form-control">
-            <option disabled {{ filters.author is not defined or filters.author == '' ? 'selected' : '' }}>Autor</option>
+            <option disabled {{ filters.author is not defined or filters.author == '' ? 'selected' : '' }}>{{ "author"|trans }}</option>
             {% for author in authors %}
             <option value="{{ author.id }}" {{ filters.author is defined and filters.author == author.id ? ' selected' : '' }}>{{ author.name }}</option>
             {% endfor %}
@@ -48,12 +48,12 @@
         {% endif %}
 
         <div class="col-xs-12 col-sm-6 col-md-2">
-          <label>Desde</label>
+          <label>{{ "date_from"|trans }}</label>
           <input type="text" class="datepicker form-control" name="from" value="{{ filters.from is defined ? filters.from : '' }}">
         </div>
 
         <div class="col-xs-12 col-sm-6 col-md-2">
-          <label>Até</label>
+          <label>{{ "date_to"|trans }}</label>
           <input type="text" class="datepicker form-control" name="to" value="{{ filters.to is defined ? filters.to : '' }}">
         </div>
       </div>
@@ -61,11 +61,11 @@
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-3">
           <br>
-          <button type="submit" class="btn btn-block btn-info">Filtrar</button>
+          <button type="submit" class="btn btn-block btn-info">{{ "filter"|trans }}</button>
         </div>
         <div class="col-xs-12 col-sm-6 col-md-3">
           <br>
-          <a href="{{ path('posts-list') }}" class="btn btn-block btn-info">Limpar filtros</a>
+          <a href="{{ path('posts-list') }}" class="btn btn-block btn-info">{{ "clear_filters"|trans }}</a>
         </div>
       </div>
     </form>
@@ -79,10 +79,10 @@
           <thead>
             <tr>
               <th>Título</th>
-              <th class="hidden-xs">Seção</th>
-              <th class="hidden-xs">Autor</th>
+              <th class="hidden-xs">{{ "section"|trans }}</th>
+              <th class="hidden-xs">{{ "author"|trans }}</th>
               <th>Status</th>
-              <th class="hidden-xs">Data de publicação</th>
+              <th class="hidden-xs">{{ "pub_date"|trans }}</th>
               <th><i class="glyphicon glyphicon-option-vertical"></i></th>
             </tr>
           </thead>

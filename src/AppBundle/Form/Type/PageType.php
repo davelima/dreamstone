@@ -25,17 +25,17 @@ class PageType extends AbstractType
         $this->entity = $options['data'];
 
         $builder->add('title', TextType::class, [
-                    'label' => 'Título'
+                    'label' => 'title'
                 ])
                 ->add('slug', TextType::class, [
-                    'label' => 'URL',
+                    'label' => 'url',
                     'required' => false
                 ])
                 ->add('content', TextareaType::class, [
                     'attr' => [
                         'class' => 'tinymce'
                     ],
-                    'label' => 'Texto'
+                    'label' => 'text'
                 ])
                 ->add('image', FileType::class, [
                     'attr' => [
@@ -43,17 +43,17 @@ class PageType extends AbstractType
                     ],
                     'required' => false,
                     'data_class' => null,
-                    'label' => 'Imagem'
+                    'label' => 'image'
                 ])
                 ->add('showOnMenu', CheckboxType::class, [
-                    'label' => 'Exibir no menu?',
+                    'label' => 'show_on_menu',
                     'required' => false
                 ])
                 ->add('submit', SubmitType::class, [
                     'attr' => [
                         'class' => 'btn btn-default'
                     ],
-                    'label' => 'Salvar'
+                    'label' => 'save'
                 ]);
     }
 }

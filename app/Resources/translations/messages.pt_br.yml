@@ -1,0 +1,54 @@
+logout: Sair
+my_profile: Perfil
+administrators: Administradores
+pages: Páginas
+section: Seção
+sections: Seções
+posts: Publicações
+list: Listar
+create: Criar
+dashboard: Resumo
+name: Nome
+login: Login
+email: Email
+photo: Foto
+password: Senha
+repeat_password: Repetir a senha
+description: Descrição
+role: Cargo
+title: Título
+show_on_menu: Exibir no menu
+image: Imagem
+text: Texto
+parent_section: Seção-pai
+save: Salvar
+filter: Filtro
+search: Pesquisar
+status: Status
+author: Autor
+date_from: Desde
+date_to: Até
+pub_date: Data de publicação
+tags: Tags
+yes: Sim
+no: Não
+clear_filters: Limpar filtros
+choose: Escolha uma opção
+short_description: Descrição curta
+status_draft: Rascunho
+status_pending_revision: Revisão pendente
+status_revised: Revisado
+status_scheduled: Agendado
+status_published: Publicado
+status_removed: Removido
+url: URL
+username: Nome de usuário
+instagram: Instagram
+twitter: Twitter
+facebook: Facebook
+role_super_administrator: Administrador geral
+role_administrator: Administrador
+role_author: Autor
+role_reviewer: Revisor
+message_confirm_enable: Deseja realmente ativar este item?
+message_confirm_disable: Deseja realmente desativar este item?

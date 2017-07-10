@@ -46,12 +46,12 @@ class Post
      * @var array
      */
     public static $statusLabels = [
-        self::STATUS_DRAFT => 'Rascunho',
-        self::STATUS_PENDING_REVISION => 'Revisao pendente',
-        self::STATUS_REVISED => 'Revisada',
-        self::STATUS_SCHEDULED => 'Agendada',
-        self::STATUS_PUBLISHED => 'Publicada',
-        self::STATUS_REMOVED => 'Removida'
+        self::STATUS_DRAFT => 'status_draft',
+        self::STATUS_PENDING_REVISION => 'status_pending_revision',
+        self::STATUS_REVISED => 'status_revised',
+        self::STATUS_SCHEDULED => 'status_scheduled',
+        self::STATUS_PUBLISHED => 'status_published',
+        self::STATUS_REMOVED => 'status_removed'
     ];
 
     /**

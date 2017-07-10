@@ -29,67 +29,69 @@ class AdministratorType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('name', TextType::class, [
-                    'label' => 'Nome'
+                    'label' => 'name'
                 ])
                 ->add('username', TextType::class, [
-                    'label' => 'Login'
+                    'label' => 'login'
                 ])
-                ->add('email')
+                ->add('email', EmailType::class, [
+                    'label' => 'email'
+                ])
                 ->add('photo', FileType::class, [
                     'attr' => [
                         'accept' => 'image/*'
                     ],
-                    'label' => 'Foto',
+                    'label' => 'photo',
                     'data_class' => null,
                     'required' => false
                 ])
                 ->add('plainPassword', RepeatedType::class, [
                     'type' => PasswordType::class,
                     'options' => [
-                        'label' => 'Senha'
+                        'label' => 'password'
                     ],
                     'second_options' => [
-                        'label' => 'Repetir a senha'
+                        'label' => 'repeat_password'
                     ]
                 ])
                 ->add('description', TextareaType::class, [
                     'attr' => [
                         'class' => 'tinymce-basic'
                     ],
-                    'label' => 'Descrição',
+                    'label' => 'description',
                     'required' => false
                 ])
                 ->add('facebookProfile', UrlType::class, [
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'URL completa'
+                        'placeholder' => 'url'
                     ],
-                    'label' => 'Facebook'
+                    'label' => 'facebook'
                 ])
                 ->add('instagramProfile', TextType::class, [
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'Nome de usuário (sem @)'
+                        'placeholder' => 'username'
                     ],
-                    'label' => 'Instagram'
+                    'label' => 'instagram'
                 ])
                 ->add('twitterProfile', TextType::class, [
                     'required' => false,
                     'attr' => [
-                        'placeholder' => 'Nome de usuário (sem @)'
+                        'placeholder' => 'username'
                     ],
-                    'label' => 'Twitter'
+                    'label' => 'twitter'
                 ])
                 ->add('roles', ChoiceType::class, [
                     'choices' => $this->roles,
                     'multiple' => true,
-                    'label' => 'Função'
+                    'label' => 'role'
                 ])
                 ->add('submit', SubmitType::class, [
                     'attr' => [
                         'class' => 'btn btn-default'
                     ],
-                    'label' => 'Salvar'
+                    'label' => 'save'
                 ]);
     }
     private function flatArray(array $data)

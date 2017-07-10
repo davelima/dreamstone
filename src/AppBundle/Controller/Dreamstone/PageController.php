@@ -23,11 +23,13 @@ class PageController extends Controller
      */
     public function indexAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $repository = $this->getDoctrine()->getRepository('AppBundle:Page');
         $pages = $repository->findAll();
 
         return $this->render('dreamstone/pages/index.html.twig', [
-            'pageTitle' => 'Pages',
+            'pageTitle' => 'pages',
             'pages' => $pages
         ]);
     }
@@ -37,6 +39,8 @@ class PageController extends Controller
      */
     public function createAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $page = new Page();
         $form = $this->createForm(PageType::class, $page);
         $response = [];
@@ -70,7 +74,7 @@ class PageController extends Controller
             $em->persist($page);
             $em->flush();
 
-            $response['message'] = 'Página cadastrada!';
+            $response['message'] = $translator->trans('page_created');
         }
 
         return $this->render('dreamstone/pages/create.html.twig', [
@@ -84,6 +88,8 @@ class PageController extends Controller
      */
     public function editAction(Request $request, $id)
     {
+        $translator = $this->get('translator');
+
         $em = $this->getDoctrine()->getManager();
         $page = $em->getRepository('AppBundle:Page')->find($id);
         $currentImage = $page->getImage();
@@ -91,7 +97,7 @@ class PageController extends Controller
 
 
         if (! $page) {
-            throw $this->createNotFoundException("Página não encontrada");
+            throw $this->createNotFoundException($translator->trans('page_not_found'));
         }
 
         $response = [];
@@ -124,7 +130,7 @@ class PageController extends Controller
             $em->persist($page);
             $em->flush();
 
-            $response['message'] = 'Página atualizada!';
+            $response['message'] = $translator->trans('page_updated');
         }
 
         return $this->render('dreamstone/pages/create.html.twig', [
@@ -139,6 +145,8 @@ class PageController extends Controller
      */
     public function switchStatusAction(Request $request)
     {
+        $translator = $this->get('translator');
+
         $result = [];
 
         $id = $request->request->get('id');
@@ -151,7 +159,7 @@ class PageController extends Controller
         $em = $this->getDoctrine()->getManager();
         $em->persist($page);
         $em->flush();
-        $result['message'] = $newStatus ? 'Page enabled!' : 'Page disabled!';
+        $result['message'] = $newStatus ? $translator->trans('page_enabled') : $translator->trans('page_disabled');
         $result['status'] = $newStatus;
 
         return $this->json($result);
