@@ -13,21 +13,21 @@
   </div>
 
   <div class="login-box-body">
-    <p class="login-box-msg">Enter with your credentials</p>
+    <p class="login-box-msg">{{ "enter_credentials"|trans }}</p>
 
     <form action="{{ path('login') }}" method="post">
       <div class="form-group has-feedback">
-        <input type="text" id="username" name="_username" class="form-control" placeholder="Username" value="{{ last_username }}">
+        <input type="text" id="username" name="_username" class="form-control" placeholder="{{ "username"|trans }}" value="{{ last_username }}">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" id="password" name="_password" class="form-control" placeholder="Password">
+        <input type="password" id="password" name="_password" class="form-control" placeholder="{{ "password"|trans }}">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-4 col-xs-offset-8">
           <input type="hidden" name="_target_path" value="/dreamstone/" />
-          <button type="submit" class="btn btn-primary btn-block btn-flat">Enter</button>
+          <button type="submit" class="btn btn-primary btn-block btn-flat">{{ "enter"|trans }}</button>
         </div>
       </div>
     </form>
