@@ -75,3 +75,5 @@ post_updated: Post updated
 message_insufficient_data: Insufficient data to generate chart
 total_reads: Total reads
 unique_users: Unique users
+latest_posts: Latest posts
+actions: Actions

@@ -3,7 +3,6 @@
 namespace AppBundle\Controller\Dreamstone;
 
 use AppBundle\Entity\Post;
-use AppBundle\Utils\Disqus;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,8 +18,13 @@ class DefaultController extends Controller
     {
         $translator = $this->get('translator');
 
+        $postsRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+
+        $latestPosts = $postsRepository->findActive(1, null, null);
+
         return $this->render('dreamstone/default/index.html.twig', [
             'pageTitle' => $translator->trans('dashboard'),
+            'latestPosts' => $latestPosts
         ]);
     }
 }
