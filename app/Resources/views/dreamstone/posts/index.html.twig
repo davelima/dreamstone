@@ -110,6 +110,11 @@
                   <i class="glyphicon glyphicon-eye-open"></i>
                 </a>
                 {% endif %}
+                <a href="{{ path('posts-report', {
+                    'id': post.id
+                }) }}" class="btn btn-default" target="_blank">
+                  <i class="fa fa-line-chart"></i>
+                </a>
 {%
 if
 (post.author == app.user and post.status == constant('AppBundle\\Entity\\Post::STATUS_DRAFT')) or

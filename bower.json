@@ -22,6 +22,7 @@
     "eonasdan-bootstrap-datetimepicker": "*",
     "bootstrap-tagsinput": "*",
     "mediaelement": "2.9.1",
-    "typeahead.js": "^0.11.1"
+    "typeahead.js": "^0.11.1",
+    "chart.js": "^2.6.0"
   }
 }

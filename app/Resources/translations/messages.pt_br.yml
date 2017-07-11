@@ -72,3 +72,6 @@ post_created: Post criado
 post_not_found: Post não encontrado
 permission_denied_edit_post: Você não tem permissão para atualizar essa publicação
 post_updated: Post atualizado
+message_insufficient_data: Informações insuficientes para gerar relatório
+total_reads: Total de leituras
+unique_users: Usuários únicos

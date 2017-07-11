@@ -145,8 +145,6 @@
     <section class="content">
 
     {% block body %}{% endblock %}
-    {% block javascripts %}{% endblock %}
-
     </section>
   </div>
 
@@ -168,5 +166,6 @@
 <script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
 <script src="{{ asset('assets/dist/js/engine.js') }}"></script>
 <script src="{{ asset('assets/dist/js/dreamstone.js') }}"></script>
+{% block javascripts %}{% endblock %}
 </body>
 </html>

@@ -72,3 +72,6 @@ post_created: Post created
 post_not_found: Post not found
 permission_denied_edit_post: You have no permission to edit this post
 post_updated: Post updated
+message_insufficient_data: Insufficient data to generate chart
+total_reads: Total reads
+unique_users: Unique users

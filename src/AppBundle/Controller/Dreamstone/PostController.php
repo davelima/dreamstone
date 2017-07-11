@@ -322,4 +322,51 @@ class PostController extends Controller
         ]);
     }
 
+    /**
+     * @Route("/report/{id}/", name="posts-report")
+     */
+    public function reportAction($id)
+    {
+        $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
+        $post = $postRepository->find($id);
+
+        if (! $post) {
+            throw $this->createNotFoundException();
+        }
+
+        $to = $from = null;
+
+        if (isset($_GET['from']) && $_GET['from']) {
+            $from = filter_input(\INPUT_GET, 'from',\FILTER_SANITIZE_STRING);
+            list($day, $month, $year) = explode('/', $from);
+            $from = new \DateTime("$year-$month-$day");
+        }
+
+        if (isset($_GET['to']) && $_GET['to']) {
+            $to = filter_input(\INPUT_GET, 'to',\FILTER_SANITIZE_STRING);
+            list($day, $month, $year) = explode('/', $to);
+            $to = new \DateTime("$year-$month-$day");
+        }
+
+        $readRepository = $this->getDoctrine()->getRepository('AppBundle:PostRead');
+        $reads = $readRepository->getReport($post, $from, $to);
+
+        $report = [];
+
+        foreach ($reads['engagementChart'] as $read) {
+            list($year, $month, $day) = explode('-', $read['timestamp']);
+            $timestamp = "$day/$month/$year";
+            $report[$timestamp] = $read['totalReads'];
+        }
+
+        return $this->render('dreamstone/posts/report.html.twig', [
+            'post' => $post,
+            'reportDates' => implode("','", array_keys($report)),
+            'reportReads' => implode(",", array_values($report)),
+            'totalReads' => $reads['totalReads'],
+            'uniqueReads' => $reads['uniqueUsers'],
+            'from' => $from,
+            'to' => $to
+        ]);
+    }
 }
