@@ -2,8 +2,19 @@
 
 {% block metatags %}
     {% if preview %}
-<meta name="robots" content="noindex,nofollow">
+
+    <meta name="robots" content="noindex,nofollow">
     {% endif %}
+
+    <meta property="og:type" content="article">
+    <meta property="article:author" content="{{ post.author.name }}">
+    <meta property="article:section" content="{{ post.section.title }}">
+    <meta property="article:tag" content="{% for tag in post.tags %}{{ tag.id }},{% endfor %}">
+    <meta property="article:published_time" content="{{ post.pubDate|date('Y-m-d H:i:s') }}">
+    <meta property="og:description" content="{{ post.description|striptags }}">
+    <meta property="og:image" content="{{ absolute_url(asset('uploads/posts/' ~ post.image)) }}">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1000">
 {% endblock %}
 
 {% block body %}
