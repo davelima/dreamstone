@@ -10,12 +10,32 @@
             <img src="/uploads/{{ administrator.photo }}" class="img-circle pull-left img-responsive" alt="Avatar" width="80">
           </div>
           <div class="col-xs-8 col-md-10">
-            <h2>{{ administrator.name }}</h2>
-            <h3>{{ administrator.username }}</h3>
+            <h2>{{ administrator.name }} <small>({{ administrator.username }})</small></h2>
+            <p><b>{{ administrator.email }}</b></p>
+            <blockquote>{{ administrator.description|raw }}</blockquote>
+
+            <hr>
+
+            {% if administrator.facebookProfile %}
+              <a href="{{ administrator.facebookProfile }}" target="_blank" class="btn btn-lg"><i class="fa fa-facebook"></i></a>
+            {% endif %}
+            {% if administrator.instagramProfile %}
+              <a href="https://instagram.com/{{ administrator.instagramProfile }}" target="_blank" class="btn btn-lg"><i class="fa fa-instagram"></i></a>
+            {% endif %}
+            {% if administrator.twitterProfile %}
+              <a href="https://twitter.com/{{ administrator.twitterProfile }}" target="_blank" class="btn btn-lg"><i class="fa fa-twitter"></i></a>
+            {% endif %}
           </div>
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-xs-12 col-md-3">
+    {% if administrator == app.getUser() %}
+    <a href="{{ path('administrators-edit', {
+        'id' : administrator.id
+    }) }}" class="btn btn-info"><i class="fa fa-pencil"></i> Edit profile</a>
+    {% endif %}
   </div>
 </div>
 {% endblock %}

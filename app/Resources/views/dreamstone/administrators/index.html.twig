@@ -21,6 +21,11 @@
               <td>{{ administrator.username }}</td>
               <td class="hidden-xs">{{ administrator.email }}</td>
               <td class="btn-group">
+                <a href="{{ path('administrator-profile', {
+                    'id' : administrator.id
+                }) }}" class="btn btn-default">
+                  <i class="fa fa-address-card"></i>
+                </a>
     {% if is_granted('ROLE_SUPER_ADMIN') or app.user.id == administrator.id %}
                 <a href="{{ path('administrators-edit', {'id': administrator.id}) }}" class="btn btn-default">
                   <i class="glyphicon glyphicon-pencil"></i>
