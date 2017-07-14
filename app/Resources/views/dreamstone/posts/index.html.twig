@@ -7,7 +7,7 @@
       <p>{{ "filter"|trans }}</p>
       <div class="row">
         <div class="col-xs-12 col-sm-6 col-md-2">
-          <label>Pesquisar</label>
+          <label>{{ "search"|trans }}</label>
           <input type="search" placeholder="{{ "title"|trans }}" name="q" class="form-control" value="{{ filters.q is defined ? filters.q : null }}">
         </div>
 
@@ -29,7 +29,7 @@
           <select size="1" name="status" class="form-control">
             <option disabled {{ filters.status is not defined or filters.status == '' ? 'selected' : '' }}>{{ "status"|trans }}</option>
             {% for statusId, statusName in statuses %}
-            <option value="{{ statusId }}" {{ filters.status is defined and filters.status == statusId ? 'selected' : '' }}>{{ statusName }}</option>
+            <option value="{{ statusId }}" {{ filters.status is defined and filters.status == statusId ? 'selected' : '' }}>{{ statusName|trans }}</option>
             {% endfor %}
           </select>
         </div>
@@ -78,7 +78,7 @@
         <table class="table table-striped">
           <thead>
             <tr>
-              <th>Título</th>
+              <th>{{ "title"|trans }}</th>
               <th class="hidden-xs">{{ "section"|trans }}</th>
               <th class="hidden-xs">{{ "author"|trans }}</th>
               <th>Status</th>
@@ -92,7 +92,7 @@
               <td>{{ post.title }}</td>
               <td class="hidden-xs">{{ post.section.title }}</td>
               <td class="hidden-xs">{{ post.author.name }}</td>
-              <td>{{ statuses[post.status] }}</td>
+              <td>{{ statuses[post.status]|trans }}</td>
               <td class="hidden-xs">{{ post.pubDate.format('d/m/Y H:i') }}</td>
               <td class="btn-group">
                 {% if post.status == constant('AppBundle\\Entity\\Post::STATUS_PUBLISHED') and post.pubDate <= date('now') %}
