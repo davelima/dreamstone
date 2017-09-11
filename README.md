@@ -1,4 +1,4 @@
-# Dreamstone Project
+![Dreamstone Logo](https://davidlima.com.br/logo-dreamstone.png)
 
 Development environment (Docker) setup:
 
