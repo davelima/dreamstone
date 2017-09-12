@@ -11,3 +11,28 @@ dreamstone-mariadb:
     - MYSQL_USER=dreamstone
     - MYSQL_PASSWORD=dreamstone
     - TZ=America/Sao_Paulo
+
+dreamstone-nginx:
+  image: davelima/nginx
+  container_name: dreamstone-nginx
+  ports:
+    - "80:80"
+  volumes:
+    - ./nginx/:/etc/nginx/sites-enabled/
+    - .:/var/www/
+  links:
+    - dreamstone-php7
+  environment:
+    - SYMFONY_ENV=dev
+
+dreamstone-php7:
+  image: lagun4ik/php7-fpm
+  container_name: dreamstone-php7
+  ports:
+    - "9000:9000"
+  links:
+    - dreamstone-mariadb
+  volumes:
+    - .:/var/www/
+  environment:
+    - SYMFONY_ENV=dev
