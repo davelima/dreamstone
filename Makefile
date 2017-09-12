@@ -1,10 +1,12 @@
 #!/usr/bin/env bash
 
-all: docker-prepare
+all: prepare-database load-fixtures update-permissions
 
-docker-prepare:
-	docker exec -i dreamstone-php7 chown www-data:www-data -R /var/www/var/
+prepare-database:
 	docker exec -i dreamstone-php7 php /var/www/bin/console doctrine:schema:update --force
 
 load-fixtures:
 	docker exec -i dreamstone-php7 php /var/www/bin/console doctrine:fixtures:load
+
+update-permissions:
+	docker exec -i dreamstone-php7 chown www-data:www-data -R /var/www/var/
