@@ -26,7 +26,7 @@ dreamstone-nginx:
     - SYMFONY_ENV=dev
 
 dreamstone-php7:
-  image: lagun4ik/php7-fpm
+  image: davelima/php71-fpm
   container_name: dreamstone-php7
   ports:
     - "9000:9000"
