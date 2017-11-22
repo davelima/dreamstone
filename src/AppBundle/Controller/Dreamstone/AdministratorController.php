@@ -75,7 +75,8 @@ class AdministratorController extends Controller
 
         return $this->render('dreamstone/administrators/create.html.twig', [
             'form' => $form->createView(),
-            'response' => $response
+            'response' => $response,
+            'pageTitle' => $translator->trans('create_administrator')
         ]);
     }
 
@@ -150,7 +151,8 @@ class AdministratorController extends Controller
         return $this->render('dreamstone/administrators/create.html.twig', [
             'form' => $form->createView(),
             'response' => $response,
-            'administrator' => $administrator
+            'administrator' => $administrator,
+            'pageTitle' => $translator->trans('edit_administrator')
         ]);
     }
 

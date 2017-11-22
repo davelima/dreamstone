@@ -205,7 +205,8 @@ class PostController extends Controller
 
         return $this->render('dreamstone/posts/create.html.twig', [
             'form' => $form->createView(),
-            'response' => $response
+            'response' => $response,
+            'pageTitle' => $translator->trans('create_post')
         ]);
     }
 
@@ -318,7 +319,8 @@ class PostController extends Controller
             'form' => $form->createView(),
             'response' => $response,
             'post' => $post,
-            'tags' => implode(',', $tags)
+            'tags' => implode(',', $tags),
+            'pageTitle' => $translator->trans('edit_post')
         ]);
     }
 
@@ -327,6 +329,8 @@ class PostController extends Controller
      */
     public function reportAction($id)
     {
+        $translator = $this->get('translator');
+
         $postRepository = $this->getDoctrine()->getRepository('AppBundle:Post');
         $post = $postRepository->find($id);
 
@@ -366,7 +370,8 @@ class PostController extends Controller
             'totalReads' => $reads['totalReads'],
             'uniqueReads' => $reads['uniqueUsers'],
             'from' => $from,
-            'to' => $to
+            'to' => $to,
+            'pageTitle' => $translator->trans('posts_report')
         ]);
     }
 }

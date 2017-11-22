@@ -57,9 +57,13 @@ section_updated: Seção atualizada
 section_enabled: Seção ativada
 section_disabled: Seção desativada
 section_not_found: Seção não encontrada
+create_session: Criar seção
+edit_session: Edit session
 administrator_created: Administrador cadastrado
 administrator_not_found: Administrador não encontrado
 administrator_updated: Administrador atualizado
+create_administrator: Criar administrador
+edit_administrator: Editar administrador
 account_enabled: Conta ativada
 account_disabled: Conta desativada
 page_created: Página cadastrada
@@ -67,11 +71,16 @@ page_not_found: Página não encontrada
 page_updated: Página atualizda
 page_enabled: Página ativada
 page_disabled: Página desativada
+create_page: Criar página
+edit_page: Editar página
 permission_denied_create_post: Você não tem permissão para criar publicações
 post_created: Post criado
 post_not_found: Post não encontrado
 permission_denied_edit_post: Você não tem permissão para atualizar essa publicação
 post_updated: Post atualizado
+create_post: Escrever post
+edit_post: Editar post
+posts_report: Acessos no post
 message_insufficient_data: Informações insuficientes para gerar relatório
 total_reads: Total de leituras
 unique_users: Usuários únicos

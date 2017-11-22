@@ -76,7 +76,8 @@ class SectionController extends Controller
 
         return $this->render('dreamstone/sections/create.html.twig', [
             'form' => $form->createView(),
-            'response' => $response
+            'response' => $response,
+            'pageTitle' => $translator->trans('create_session')
         ]);
     }
 
@@ -112,7 +113,8 @@ class SectionController extends Controller
         return $this->render('dreamstone/sections/create.html.twig', [
             'form' => $form->createView(),
             'response' => $response,
-            'section' => $section
+            'section' => $section,
+            'pageTitle' => $translator->trans('edit_session')
         ]);
     }
 

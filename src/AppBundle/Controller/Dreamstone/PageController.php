@@ -79,7 +79,8 @@ class PageController extends Controller
 
         return $this->render('dreamstone/pages/create.html.twig', [
             'form' => $form->createView(),
-            'response' => $response
+            'response' => $response,
+            'pageTitle' => $translator->trans('create_page')
         ]);
     }
 
@@ -136,7 +137,8 @@ class PageController extends Controller
         return $this->render('dreamstone/pages/create.html.twig', [
             'form' => $form->createView(),
             'response' => $response,
-            'page' => $page
+            'page' => $page,
+            'pageTitle' => $translator->trans('edit_page')
         ]);
     }
     /**

@@ -57,9 +57,13 @@ section_updated: Section updated
 section_enabled: Section enabled
 section_disabled: Section disabled
 section_not_found: Section not found
+create_session: Create session
+edit_session: Edit session
 administrator_created: Administrator created
 administrator_not_found: Administrator not found
 administrator_updated: Administrator updated
+create_administrator: Create administrator
+edit_administrator: Edit administrator
 account_enabled: Account enabled
 account_disabled: Account disabled
 page_created: Page created
@@ -67,11 +71,16 @@ page_not_found: Page not found
 page_updated: Page updated
 page_enabled: Page enabled
 page_disabled: Page disabled
+create_page: Create page
+edit_page: Edit page
 permission_denied_create_post: You have no permission to create posts
 post_created: Post created
 post_not_found: Post not found
 permission_denied_edit_post: You have no permission to edit this post
 post_updated: Post updated
+create_post: Create post
+edit_post: Edit post
+posts_report: Report
 message_insufficient_data: Insufficient data to generate chart
 total_reads: Total reads
 unique_users: Unique users
