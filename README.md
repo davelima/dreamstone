@@ -1,5 +1,8 @@
 ![Dreamstone Logo](https://davidlima.com.br/logo-dreamstone.png)
 
+Dreamstone is a simple, highly customizable CMS based on Symfony 3 framework.
+
+
 Development environment (Docker) setup:
 
 ```
