@@ -1,21 +1,10 @@
-/app/config/parameters.yml
-/build/
-/phpunit.xml
-/var/*
-!/var/cache
-/var/cache/*
-!var/cache/.gitkeep
-!/var/logs
-/var/logs/*
-!var/logs/.gitkeep
-!/var/sessions
-/var/sessions/*
-!var/sessions/.gitkeep
-!var/SymfonyRequirements.php
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
 /vendor/
-/web/bundles/
-.settings/
-/web/assets/bower/
-composer.lock
-/web/uploads/
+###< symfony/framework-bundle ###
 .mysqldata/
+/public/uploads/
+/public/assets/bower/
+

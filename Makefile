@@ -10,3 +10,4 @@ load-fixtures:
 
 update-permissions:
 	docker exec -i dreamstone-php7 chown www-data:www-data -R /var/www/var/
+	docker exec -i dreamstone-php7 chown www-data:www-data -R /var/www/public/uploads/
