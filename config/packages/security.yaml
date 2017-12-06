@@ -1,0 +1,43 @@
+security:
+    encoders:
+        App\Entity\Administrator:
+            algorithm: bcrypt
+
+    providers:
+        our_db_provider:
+            entity:
+                class: App:Administrator
+                property: username
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        main:
+            anonymous: ~
+            form_login:
+                login_path: login
+                check_path: login
+                provider: our_db_provider
+            logout:
+                path:   /dreamstone/logout/
+                target: /dreamstone/login/
+                invalidate_session: true
+
+            # activate different ways to authenticate
+
+            # http_basic: ~
+            # https://symfony.com/doc/current/book/security.html#a-configuring-how-your-users-will-authenticate
+
+            # form_login: ~
+            # https://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    role_hierarchy:
+        ROLE_SUPER_ADMIN: [ROLE_REVIEWER, ROLE_AUTHOR, ROLE_ADMIN]
+        ROLE_REVIEWER: [ROLE_ADMIN]
+        ROLE_AUTHOR: [ROLE_ADMIN]
+        ROLE_ADMIN: []
+
+    access_control:
+        - { path: ^/dreamstone/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/dreamstone/administrators/create/, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/dreamstone/, roles: ROLE_ADMIN }
