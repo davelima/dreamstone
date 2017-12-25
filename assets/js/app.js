@@ -3,6 +3,7 @@ require('bootstrap-sass')
 require('moment')
 require('eonasdan-bootstrap-datetimepicker')
 require('tinymce')
+require('chart.js')
 /* TinyMCE dependencies */
 require('tinymce/themes/modern/theme')
 require('tinymce/plugins/advlist')
@@ -43,4 +44,5 @@ $(function () {
     dreamstone.enableDateTimePicker();
     dreamstone.enableTinyMCE();
     dreamstone.enableTagsInput();
+    dreamstone.enableCharts();
 });

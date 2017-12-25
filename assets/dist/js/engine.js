@@ -154,5 +154,40 @@ engine.prototype = {
 
     enableTagsInput: function() {
         $('.tagsinput').tagsinput();
+    },
+
+    enableCharts: function() {
+        window.reportDates = '{{ reportDates|raw }}';
+        window.reportReads = '{{ reportReads }}';
+        var ctx = $('#report');
+
+        if (ctx.length) {
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: [window.reportDates],
+                    datasets: [{
+                        label: 'Reads',
+                        data: [window.reportReads],
+                        backgroundColor: 'rgba(145,220,0,0.3)',
+                        borderColor: 'rgb(145,220,0)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true,
+                                userCallback: function (label) {
+                                    if (Math.floor(label) === label) {
+                                        return label;
+                                    }
+                                }
+                            }
+                        }]
+                    }
+                }
+            });
+        }
     }
 };
