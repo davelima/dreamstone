@@ -1,6 +1,5 @@
 var $ = require('jquery')
 require('bootstrap-sass')
-require('icheck')
 require('moment')
 require('eonasdan-bootstrap-datetimepicker')
 require('tinymce')
@@ -39,12 +38,6 @@ require('../dist/js/app')
 require('../dist/js/engine')
 
 $(function () {
-    $('input[type=checkbox]').iCheck({
-        checkboxClass: 'icheckbox_minimal-blue',
-        radioClass: 'iradio_minimal-blue',
-        increaseArea: '20%' // optional
-    });
-
     var dreamstone = new engine();
     dreamstone.enableStatusButtons();
     dreamstone.enableDateTimePicker();
