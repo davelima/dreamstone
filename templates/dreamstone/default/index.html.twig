@@ -24,7 +24,7 @@
                                         'section': post.section.slug,
                                         'slug': post.slug
                                     }) }}" class="btn btn-default" target="_blank">
-                                        <i class="glyphicon glyphicon-eye-open"></i>
+                                        <i class="fa fa-eye"></i>
                                     </a>
                                     <a href="{{ path('posts-report', {
                                         'id': post.id
@@ -38,7 +38,7 @@
                                     (is_granted('ROLE_REVIEWER') and post.status == constant('App\\Entity\\Post::STATUS_PENDING_REVISION'))
                                     %}
                                         <a href="{{ path('posts-edit', {'id': post.id}) }}" class="btn btn-default">
-                                            <i class="glyphicon glyphicon-pencil"></i>
+                                            <i class="fa fa-pencil"></i>
                                         </a>
                                     {% endif %}
                                 </td>

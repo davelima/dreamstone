@@ -11,7 +11,7 @@
               <th>{{ "name"|trans }}</th>
               <th>{{ "login"|trans }}</th>
               <th class="hidden-xs">{{ "email"|trans }}</th>
-              <th class="hidden-xs"><i class="glyphicon glyphicon-option-vertical"></i></th>
+              <th class="hidden-xs"><i class="fa fa-ellipsis-v"></i></th>
             </tr>
           </thead>
           <tbody>
@@ -28,7 +28,7 @@
                 </a>
     {% if is_granted('ROLE_SUPER_ADMIN') or app.user.id == administrator.id %}
                 <a href="{{ path('administrators-edit', {'id': administrator.id}) }}" class="btn btn-default">
-                  <i class="glyphicon glyphicon-pencil"></i>
+                  <i class="fa fa-pencil"></i>
                 </a>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
                 <a href="{{ path('administrators-switch-status') }}"

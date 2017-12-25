@@ -9,7 +9,7 @@
             <thead>
             <tr>
               <th>{{ 'sections'|trans }}</th>
-              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+              <th><i class="fa fa-ellipsis-v"></i></th>
             </tr>
             </thead>
             <tbody>
@@ -20,7 +20,7 @@
                     <td class="btn-group">
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
                           <a href="{{ path('section-edit', {'id': section.id}) }}" class="btn btn-default">
-                            <i class="glyphicon glyphicon-pencil"></i>
+                            <i class="fa fa-pencil"></i>
                           </a>
                           <a href="{{ path('section-switch-status') }}"
                              data-id="{{ section.id }}"
@@ -41,7 +41,7 @@
                             <td class="btn-group">
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
                                   <a href="{{ path('section-edit', {'id': children.id}) }}" class="btn btn-default">
-                                    <i class="glyphicon glyphicon-pencil"></i>
+                                    <i class="fa fa-pencil"></i>
                                   </a>
                                   <a href="{{ path('section-switch-status') }}"
                                      data-id="{{ children.id }}"

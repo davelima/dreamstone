@@ -83,7 +83,7 @@
               <th class="hidden-xs">{{ "author"|trans }}</th>
               <th>Status</th>
               <th class="hidden-xs">{{ "pub_date"|trans }}</th>
-              <th><i class="glyphicon glyphicon-option-vertical"></i></th>
+              <th><i class="fa fa-ellipsis-v"></i></th>
             </tr>
           </thead>
           <tbody>
@@ -100,14 +100,14 @@
                     'section': post.section.slug,
                     'slug': post.slug
                 }) }}" class="btn btn-default" target="_blank">
-                  <i class="glyphicon glyphicon-eye-open"></i>
+                  <i class="fa fa-eye"></i>
                 </a>
                 {% else %}
                 <a href="{{ path('posts-preview', {
                     'section': post.section.slug,
                     'slug': post.slug
                 }) }}" class="btn btn-default" target="_blank">
-                  <i class="glyphicon glyphicon-eye-open"></i>
+                  <i class="fa fa-eye"></i>
                 </a>
                 {% endif %}
                 <a href="{{ path('posts-report', {
@@ -122,7 +122,7 @@ is_granted('ROLE_SUPER_ADMIN') or
 (is_granted('ROLE_REVIEWER') and post.status == constant('App\\Entity\\Post::STATUS_PENDING_REVISION'))
 %}
                 <a href="{{ path('posts-edit', {'id': post.id}) }}" class="btn btn-default">
-                  <i class="glyphicon glyphicon-pencil"></i>
+                  <i class="fa fa-pencil"></i>
                 </a>
 {% endif %}
               </td>
