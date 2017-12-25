@@ -6,7 +6,6 @@
 ###< symfony/framework-bundle ###
 .mysqldata/
 /public/uploads/
-/public/assets/bower/
 /public/build/
 
 
