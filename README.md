@@ -1,15 +1,16 @@
 ![Dreamstone Logo](https://davidlima.com.br/logo-dreamstone.png)
 
-Dreamstone is a simple, highly customizable CMS based on Symfony 3 framework.
+Dreamstone is a simple, highly customizable CMS based on Symfony 4 framework.
 
 
 Development environment (Docker) setup:
 
 ```
 $ composer install
-$ bower install
+$ npm install
+$ yarn run encore dev # Will build assets
 $ docker-compose up -d
-$ make # Will set up permissions and database
+$ make # Will set up directories, permissions and database
 ```
 
 Running development environment (Docker):
