@@ -2,8 +2,6 @@
 namespace App\Utils;
 
 use Doctrine\ORM\EntityManagerInterface;
-#use Symfony\Component\DependencyInjection\Container;
-#use Symfony\Component\DependencyInjection\ContainerInterface;
 
 class Menus
 {

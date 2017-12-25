@@ -2,7 +2,6 @@
 
 namespace App\Controller\Dreamstone;
 
-use App\Entity\Post;
 use App\Entity\Section;
 use App\Form\Type\SectionType;
 use App\Utils\Disqus;

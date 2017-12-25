@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Entity;
-use Symfony\Component\VarDumper\VarDumper;
 
 /**
  * PostReadRepository
