@@ -21,7 +21,7 @@
               <td>{{ administrator.username }}</td>
               <td class="hidden-xs">{{ administrator.email }}</td>
               <td class="btn-group">
-                <a href="{{ path('administrator-profile', {
+                <a href="{{ path('administrators-profile', {
                     'id' : administrator.id
                 }) }}" class="btn btn-default">
                   <i class="fa fa-address-card"></i>
@@ -31,7 +31,7 @@
                   <i class="glyphicon glyphicon-pencil"></i>
                 </a>
         {% if is_granted('ROLE_SUPER_ADMIN') %}
-                <a href="{{ path('administrator-switch-status') }}"
+                <a href="{{ path('administrators-switch-status') }}"
                     data-id="{{ administrator.id }}"
                     data-enable-message="{{ "message_confirm_enable"|trans }}"
                     data-disable-message="{{ "message_confirm_disable"|trans }}"
