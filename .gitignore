@@ -8,3 +8,7 @@
 /public/uploads/
 /public/assets/bower/
 
+
+###> symfony/webpack-encore-pack ###
+/node_modules/
+###< symfony/webpack-encore-pack ###

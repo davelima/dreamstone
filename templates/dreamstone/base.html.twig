@@ -12,14 +12,7 @@
   {% endblock %}
   </title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <link rel="stylesheet" href="{{ asset('assets/bower/bootstrap/dist/css/bootstrap.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/AdminLTE.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/bower/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/bower/bootstrap-tagsinput/dist/bootstrap-tagsinput-typeahead.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/skins/skin-black-light.min.css') }}">
-  <link rel="stylesheet" href="{{ asset('assets/dist/css/dreamstone.css') }}">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -174,16 +167,7 @@
   </footer>
   <div class="control-sidebar-bg"></div>
 </div>
-<script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/bower/moment/moment.js') }}"></script>
-<script src="{{ asset('assets/bower/moment/locale/pt-br.js') }}"></script>
-<script src="{{ asset('assets/bower/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js') }}"></script>
-<script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
-<script src="{{ asset('assets/bower/bootstrap-tagsinput/dist/bootstrap-tagsinput.js') }}"></script>
-<script src="{{ asset('assets/dist/js/app.min.js') }}"></script>
-<script src="{{ asset('assets/dist/js/engine.js') }}"></script>
-<script src="{{ asset('assets/dist/js/dreamstone.js') }}"></script>
+<script src="{{ asset('build/js/app.js') }}"></script>
 {% block javascripts %}{% endblock %}
 </body>
 </html>

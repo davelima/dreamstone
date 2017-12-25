@@ -1,0 +1,29 @@
+{
+    "devDependencies": {
+        "@symfony/webpack-encore": "^0.12.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production"
+    },
+    "dependencies": {
+        "ResponsiveFilemanager": "trippo/ResponsiveFilemanager",
+        "bootstrap-sass": "^3.3.7",
+        "bootstrap-tagsinput": "^0.7.1",
+        "bootstrap-typeahead": "^2.3.2",
+        "eonasdan-bootstrap-datetimepicker": "^4.17.47",
+        "fontawesome": "^4.7.2",
+        "icheck": "^1.0.2",
+        "ionicons": "^3.0.0",
+        "jquery": "^3.2.1",
+        "moment": "^2.19.3",
+        "moment-timezone": "^0.5.14",
+        "node-sass": "^4.7.2",
+        "sass-loader": "^6.0.6",
+        "tinymce": "^4.7.4"
+    }
+}

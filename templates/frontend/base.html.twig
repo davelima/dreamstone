@@ -9,8 +9,7 @@
     <meta property="og:title" content="{{ pageTitle is defined ? pageTitle ~ ' :: ' : ''}}Dreamstone">
     <meta property="og:site_name" content="Dreamstone">
     {% block metatags %}{% endblock %}
-    <link href="{{ asset('assets/bower/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/dist/css/frontend.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('build/css/app-frontend.css') }}">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
@@ -114,9 +113,7 @@
     </div>
 </footer>
 
-<script src="{{ asset('assets/bower/jquery/dist/jquery.min.js') }}"></script>
-<script src="{{ asset('assets/bower/bootstrap/dist/js/bootstrap.min.js') }}"></script>
-<script src="{{ asset('assets/dist/js/frontend.js') }}"></script>
+<script src="{{ asset('build/js/app-frontend.js') }}"></script>
 
 {% block scripts %}
 {% endblock %}
