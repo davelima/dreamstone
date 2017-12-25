@@ -157,8 +157,6 @@ engine.prototype = {
     },
 
     enableCharts: function() {
-        window.reportDates = '{{ reportDates|raw }}';
-        window.reportReads = '{{ reportReads }}';
         var ctx = $('#report');
 
         if (ctx.length) {
