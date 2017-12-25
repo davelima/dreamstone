@@ -7,6 +7,7 @@ Development environment (Docker) setup:
 
 ```
 $ composer install
+$ cp .env.dist .env # Default environment variables
 $ npm install
 $ yarn run encore dev # Will build assets
 $ docker-compose up -d
