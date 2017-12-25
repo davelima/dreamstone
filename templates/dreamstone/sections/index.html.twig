@@ -19,10 +19,10 @@
                     <td>{{ section.title }}</td>
                     <td class="btn-group">
                         {% if is_granted('ROLE_SUPER_ADMIN') %}
-                          <a href="{{ path('section-edit', {'id': section.id}) }}" class="btn btn-default">
+                          <a href="{{ path('sections-edit', {'id': section.id}) }}" class="btn btn-default">
                             <i class="fa fa-pencil"></i>
                           </a>
-                          <a href="{{ path('section-switch-status') }}"
+                          <a href="{{ path('sections-switch-status') }}"
                              data-id="{{ section.id }}"
                              data-enable-message="{{ "message_confirm_enable"|trans }}"
                              data-disable-message="{{ "message_confirm_disable"|trans }}"
@@ -40,10 +40,10 @@
                             <td><i class="fa fa-level-up fa-rotate-90"></i> {{ children.title }}</td>
                             <td class="btn-group">
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                                  <a href="{{ path('section-edit', {'id': children.id}) }}" class="btn btn-default">
+                                  <a href="{{ path('sections-edit', {'id': children.id}) }}" class="btn btn-default">
                                     <i class="fa fa-pencil"></i>
                                   </a>
-                                  <a href="{{ path('section-switch-status') }}"
+                                  <a href="{{ path('sections-switch-status') }}"
                                      data-id="{{ children.id }}"
                                      data-enable-message="{{ "message_confirm_enable"|trans }}"
                                      data-disable-message="{{ "message_confirm_disable"|trans }}"
