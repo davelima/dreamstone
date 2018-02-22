@@ -38,6 +38,10 @@ class PostType extends AbstractType
         $builder->add('title', TextType::class, [
                 'label' => 'title'
             ])
+            ->add('slug', TextType::class, [
+                'label' => 'custom_slug',
+                'required' => false
+            ])
             ->add('section', EntityType::class, [
                 'class' => 'App:Section',
                 'choice_label' => 'title',

@@ -151,7 +151,12 @@ class PostController extends Controller
             $post->setPubDate(new \DateTime($post->getPubDate()));
             $post->setLastChange(new \DateTime());
             $post->setCreationDate(new \DateTime());
-            $post->setSlug(Urls::slugify($post->getTitle()));
+            if (! $post->getSlug()) {
+                $post->setSlug(Urls::slugify($post->getTitle()));
+            } else {
+                $post->setSlug(Urls::slugify($post->getSlug()));
+            }
+
             $post->setAuthor($this->getUser());
 
             if (
