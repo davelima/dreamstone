@@ -47,7 +47,12 @@ class PostType extends AbstractType
                 'choice_label' => 'title',
                 'required' => true,
                 'placeholder' => 'choose',
-                'label' => 'section'
+                'label' => 'section',
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('u');
+                    return $qb->where($qb->expr()->eq('u.status', '?1'))
+                        ->setParameter('1', true);
+                },
             ])
             ->add('author', EntityType::class, [
                 'class' => 'App:Administrator',
