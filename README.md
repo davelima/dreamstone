@@ -11,7 +11,7 @@ $ cp .env.dist .env # Default environment variables
 $ npm install
 $ yarn run encore dev # Will build assets
 $ docker-compose up -d
-$ make # Will set up directories, permissions and database
+$ php bin/console dreamstone:install
 ```
 
 Running development environment (Docker):
