@@ -12,12 +12,9 @@ class LoadExampleSection extends Fixture implements FixtureInterface
 {
     public function load(ObjectManager $manager)
     {
-        $administrator = $manager->find('App:Administrator', 1);
-
         $sectionTitle = 'General';
 
         $section = new Section();
-        $section->setAuthor($administrator);
         $section->setCreationDate(new \DateTime());
         $section->setTitle($sectionTitle);
         $section->setShowOnMenu(true);
