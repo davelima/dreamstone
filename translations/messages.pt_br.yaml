@@ -89,3 +89,4 @@ actions: Ações
 enter_credentials: Entre com seus dados de acesso
 enter: Entrar
 custom_slug: URL customizada
+no_section_created: Você não tem nenhuma seção criada. Por favor crie pelo menos uma seção.

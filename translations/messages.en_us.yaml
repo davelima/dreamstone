@@ -89,3 +89,4 @@ actions: Actions
 enter_credentials: Enter with your credentials
 enter: Enter
 custom_slug: Custom URL
+no_section_created: You don't have any created sections. Please create at least one section.
