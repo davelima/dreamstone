@@ -77,6 +77,12 @@
     "ocramius/proxy-manager": {
         "version": "2.1.1"
     },
+    "pdepend/pdepend": {
+        "version": "2.5.2"
+    },
+    "phpmd/phpmd": {
+        "version": "2.6.0"
+    },
     "psr/cache": {
         "version": "1.0.1"
     },
@@ -104,6 +110,9 @@
     "symfony/asset": {
         "version": "v4.0.1"
     },
+    "symfony/browser-kit": {
+        "version": "v4.1.6"
+    },
     "symfony/cache": {
         "version": "v4.0.1"
     },
@@ -119,6 +128,9 @@
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
     },
+    "symfony/css-selector": {
+        "version": "v4.1.6"
+    },
     "symfony/debug": {
         "version": "v4.0.1"
     },
@@ -127,6 +139,9 @@
     },
     "symfony/doctrine-bridge": {
         "version": "v4.0.1"
+    },
+    "symfony/dom-crawler": {
+        "version": "v4.1.6"
     },
     "symfony/dotenv": {
         "version": "v4.0.1"
@@ -181,6 +196,18 @@
     },
     "symfony/orm-pack": {
         "version": "v1.0.4"
+    },
+    "symfony/phpunit-bridge": {
+        "version": "4.1",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.1",
+            "ref": "b14c7f62fabeedf256d3211b0f704402b5530ba1"
+        }
+    },
+    "symfony/polyfill-ctype": {
+        "version": "v1.9.0"
     },
     "symfony/polyfill-intl-icu": {
         "version": "v1.6.0"
