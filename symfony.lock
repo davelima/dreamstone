@@ -128,6 +128,9 @@
             "ref": "9f94d3ea453cd8a3b95db7f82592d7344fe3a76a"
         }
     },
+    "symfony/contracts": {
+        "version": "v1.0.2"
+    },
     "symfony/css-selector": {
         "version": "v4.1.6"
     },
@@ -165,7 +168,7 @@
         }
     },
     "symfony/form": {
-        "version": "v4.0.1"
+        "version": "v4.2.5"
     },
     "symfony/framework-bundle": {
         "version": "3.3",
@@ -186,13 +189,13 @@
         "version": "v4.0.1"
     },
     "symfony/intl": {
-        "version": "v4.0.1"
+        "version": "v4.2.5"
     },
     "symfony/lts": {
         "version": "4-dev"
     },
     "symfony/options-resolver": {
-        "version": "v4.0.1"
+        "version": "v4.2.5"
     },
     "symfony/orm-pack": {
         "version": "v1.0.4"
@@ -210,7 +213,7 @@
         "version": "v1.9.0"
     },
     "symfony/polyfill-intl-icu": {
-        "version": "v1.6.0"
+        "version": "v1.11.0"
     },
     "symfony/polyfill-mbstring": {
         "version": "v1.6.0"
@@ -233,9 +236,6 @@
             "ref": "a249484db698d1a847a30291c8f732414ac47e25"
         }
     },
-    "symfony/security": {
-        "version": "v4.0.1"
-    },
     "symfony/security-bundle": {
         "version": "3.3",
         "recipe": {
@@ -244,6 +244,18 @@
             "version": "3.3",
             "ref": "85834af1496735f28d831489d12ab1921a875e0d"
         }
+    },
+    "symfony/security-core": {
+        "version": "v4.2.5"
+    },
+    "symfony/security-csrf": {
+        "version": "v4.2.5"
+    },
+    "symfony/security-guard": {
+        "version": "v4.2.5"
+    },
+    "symfony/security-http": {
+        "version": "v4.2.5"
     },
     "symfony/stopwatch": {
         "version": "v4.0.1"
@@ -254,8 +266,12 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "3.3",
-            "ref": "6bcd6c570c017ea6ae5a7a6a027c929fd3542cd8"
-        }
+            "ref": "1fb02a6e1c8f3d4232cce485c9afa868d63b115a"
+        },
+        "files": [
+            "config/packages/translation.yaml",
+            "translations/.gitignore"
+        ]
     },
     "symfony/twig-bridge": {
         "version": "v4.0.1"
@@ -271,6 +287,9 @@
     },
     "symfony/var-dumper": {
         "version": "v4.0.1"
+    },
+    "symfony/var-exporter": {
+        "version": "v4.2.5"
     },
     "symfony/web-profiler-bundle": {
         "version": "3.3",
