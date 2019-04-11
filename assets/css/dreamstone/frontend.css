@@ -3,6 +3,9 @@
  * Copyright 2013-2017 Start Bootstrap
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
+
+@import url('https://fonts.googleapis.com/css?family=Lora|Open+Sans');
+
 body {
     font-family: 'Lora', 'Times New Roman', serif;
     font-size: 20px;
@@ -10,7 +13,7 @@ body {
 }
 p {
     line-height: 1.5;
-    margin: 30px 0;
+    margin: 30px 10px;
 }
 p a {
     text-decoration: underline;

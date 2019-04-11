@@ -116,6 +116,7 @@ engine.prototype = {
 
     enableTinyMCE: function() {
         tinymce.init({
+            skin: '../../../assets/plugins/tinymce/skins/dreamstone',
             selector: '.tinymce-basic',
             menubar: false,
             setup: function (editor) {
@@ -126,9 +127,11 @@ engine.prototype = {
             external_filemanager_path: "/assets/plugins/tinymce/plugins/filemanager/",
             filemanager_title: "Responsive Filemanager",
             external_plugins: {"filemanager": "/assets/plugins/tinymce/plugins/filemanager/plugin.min.js"},
+            content_css: '/build/css/app-frontend.css'
         });
 
         tinymce.init({
+            skin: '../../../assets/plugins/tinymce/skins/dreamstone',
             selector: '.tinymce',
             menubar: false,
             plugins: [
@@ -139,7 +142,7 @@ engine.prototype = {
             toolbar1: "undo redo | bold italic underline fontselect fontsizeselect | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect",
             toolbar2: "| responsivefilemanager | link unlink anchor | image media | forecolor backcolor  | print preview code ",
             image_advtab: true,
-            content_css: '/assets/dist/css/default.css,/assets/dist/css/fonts.css',
+            content_css: '/build/css/app-frontend.css',
             external_filemanager_path: "/assets/plugins/tinymce/plugins/filemanager/",
             filemanager_title: "Responsive Filemanager",
             external_plugins: {"filemanager": "/assets/plugins/tinymce/plugins/filemanager/plugin.min.js"},
